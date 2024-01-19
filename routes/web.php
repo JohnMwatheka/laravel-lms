@@ -31,7 +31,13 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
-
-Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
-
+// Admin group middleware
+Route::middleware(['auth','role:admin'])->group(function(){
+  Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');  
+});
+//end admin middleware
+//Instructon role middleware
+Route::middleware(['auth','role:instructor'])->group(function(){
 Route::get('/instructor/dashboard', [InstructorController::class, 'InstructorDashboard'])->name('instructor.dashboard');
+});
+//end instructor middleware
