@@ -7,6 +7,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--favicon-->
 	<link rel="icon" href="{{asset('backend/assets/images/favicon-32x32.png')}}" type="image/png"/>
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+
+
+
 	<!--plugins-->
 	<link href="{{asset('backend/assets/plugins/vectormap/jquery-jvectormap-2.0.2.css')}}" rel="stylesheet"/>
 	<link href=" {{asset('backend/assets/plugins/simplebar/css/simplebar.css')}}" rel="stylesheet" />
@@ -25,7 +31,19 @@
 	<link rel="stylesheet" href="{{asset('backend/assets/css/dark-theme.css')}}"/>
 	<link rel="stylesheet" href="{{asset('backend/assets/css/semi-dark.css')}}"/>
 	<link rel="stylesheet" href="{{asset('backend/assets/css/header-colors.css')}}"/>
-	<title>Rocker - Bootstrap 5 Admin Dashboard Template</title>
+
+
+	<!-- Datables  css-->
+	<link href="{{ asset('backend/assets/plugins/datatable/css/dataTables.bootstrap5.min.css')}}" rel="stylesheet" />
+
+	<!--Toastr css. It show alerts during validation-->
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+
+
+
+
+	<!--Page Tittle-->
+	<title>Admin Dashboard</title>
 </head>
 
 <body>
@@ -57,10 +75,10 @@
     <div class="modal" id="SearchModal" tabindex="-1">
 		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen-md-down">
 		  <div class="modal-content">
-			<div class="modal-header gap-2">
+			<div class="gap-2 modal-header">
 			  <div class="position-relative popup-search w-100">
-				<input class="form-control form-control-lg ps-5 border border-3 border-primary" type="search" placeholder="Search">
-				<span class="position-absolute top-50 search-show ms-3 translate-middle-y start-0 top-50 fs-4"><i class='bx bx-search'></i></span>
+				<input class="border form-control form-control-lg ps-5 border-3 border-primary" type="search" placeholder="Search">
+				<span class="position-absolute top-50 search-show ms-3 translate-middle-y start-0 fs-4"><i class='bx bx-search'></i></span>
 			  </div>
 			  <button type="button" class="btn-close d-md-none" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
@@ -68,31 +86,31 @@
 				<div class="search-list">
 				   <p class="mb-1">Html Templates</p>
 				   <div class="list-group">
-					  <a href="javascript:;" class="list-group-item list-group-item-action active align-items-center d-flex gap-2 py-1"><i class='bx bxl-angular fs-4'></i>Best Html Templates</a>
-					  <a href="javascript:;" class="list-group-item list-group-item-action align-items-center d-flex gap-2 py-1"><i class='bx bxl-vuejs fs-4'></i>Html5 Templates</a>
-					  <a href="javascript:;" class="list-group-item list-group-item-action align-items-center d-flex gap-2 py-1"><i class='bx bxl-magento fs-4'></i>Responsive Html5 Templates</a>
-					  <a href="javascript:;" class="list-group-item list-group-item-action align-items-center d-flex gap-2 py-1"><i class='bx bxl-shopify fs-4'></i>eCommerce Html Templates</a>
+					  <a href="javascript:;" class="gap-2 py-1 list-group-item list-group-item-action active align-items-center d-flex"><i class='bx bxl-angular fs-4'></i>Best Html Templates</a>
+					  <a href="javascript:;" class="gap-2 py-1 list-group-item list-group-item-action align-items-center d-flex"><i class='bx bxl-vuejs fs-4'></i>Html5 Templates</a>
+					  <a href="javascript:;" class="gap-2 py-1 list-group-item list-group-item-action align-items-center d-flex"><i class='bx bxl-magento fs-4'></i>Responsive Html5 Templates</a>
+					  <a href="javascript:;" class="gap-2 py-1 list-group-item list-group-item-action align-items-center d-flex"><i class='bx bxl-shopify fs-4'></i>eCommerce Html Templates</a>
 				   </div>
-				   <p class="mb-1 mt-3">Web Designe Company</p>
+				   <p class="mt-3 mb-1">Web Designe Company</p>
 				   <div class="list-group">
-					  <a href="javascript:;" class="list-group-item list-group-item-action align-items-center d-flex gap-2 py-1"><i class='bx bxl-windows fs-4'></i>Best Html Templates</a>
-					  <a href="javascript:;" class="list-group-item list-group-item-action align-items-center d-flex gap-2 py-1"><i class='bx bxl-dropbox fs-4' ></i>Html5 Templates</a>
-					  <a href="javascript:;" class="list-group-item list-group-item-action align-items-center d-flex gap-2 py-1"><i class='bx bxl-opera fs-4'></i>Responsive Html5 Templates</a>
-					  <a href="javascript:;" class="list-group-item list-group-item-action align-items-center d-flex gap-2 py-1"><i class='bx bxl-wordpress fs-4'></i>eCommerce Html Templates</a>
+					  <a href="javascript:;" class="gap-2 py-1 list-group-item list-group-item-action align-items-center d-flex"><i class='bx bxl-windows fs-4'></i>Best Html Templates</a>
+					  <a href="javascript:;" class="gap-2 py-1 list-group-item list-group-item-action align-items-center d-flex"><i class='bx bxl-dropbox fs-4' ></i>Html5 Templates</a>
+					  <a href="javascript:;" class="gap-2 py-1 list-group-item list-group-item-action align-items-center d-flex"><i class='bx bxl-opera fs-4'></i>Responsive Html5 Templates</a>
+					  <a href="javascript:;" class="gap-2 py-1 list-group-item list-group-item-action align-items-center d-flex"><i class='bx bxl-wordpress fs-4'></i>eCommerce Html Templates</a>
 				   </div>
-				   <p class="mb-1 mt-3">Software Development</p>
+				   <p class="mt-3 mb-1">Software Development</p>
 				   <div class="list-group">
-					  <a href="javascript:;" class="list-group-item list-group-item-action align-items-center d-flex gap-2 py-1"><i class='bx bxl-mailchimp fs-4'></i>Best Html Templates</a>
-					  <a href="javascript:;" class="list-group-item list-group-item-action align-items-center d-flex gap-2 py-1"><i class='bx bxl-zoom fs-4'></i>Html5 Templates</a>
-					  <a href="javascript:;" class="list-group-item list-group-item-action align-items-center d-flex gap-2 py-1"><i class='bx bxl-sass fs-4'></i>Responsive Html5 Templates</a>
-					  <a href="javascript:;" class="list-group-item list-group-item-action align-items-center d-flex gap-2 py-1"><i class='bx bxl-vk fs-4'></i>eCommerce Html Templates</a>
+					  <a href="javascript:;" class="gap-2 py-1 list-group-item list-group-item-action align-items-center d-flex"><i class='bx bxl-mailchimp fs-4'></i>Best Html Templates</a>
+					  <a href="javascript:;" class="gap-2 py-1 list-group-item list-group-item-action align-items-center d-flex"><i class='bx bxl-zoom fs-4'></i>Html5 Templates</a>
+					  <a href="javascript:;" class="gap-2 py-1 list-group-item list-group-item-action align-items-center d-flex"><i class='bx bxl-sass fs-4'></i>Responsive Html5 Templates</a>
+					  <a href="javascript:;" class="gap-2 py-1 list-group-item list-group-item-action align-items-center d-flex"><i class='bx bxl-vk fs-4'></i>eCommerce Html Templates</a>
 				   </div>
-				   <p class="mb-1 mt-3">Online Shoping Portals</p>
+				   <p class="mt-3 mb-1">Online Shoping Portals</p>
 				   <div class="list-group">
-					  <a href="javascript:;" class="list-group-item list-group-item-action align-items-center d-flex gap-2 py-1"><i class='bx bxl-slack fs-4'></i>Best Html Templates</a>
-					  <a href="javascript:;" class="list-group-item list-group-item-action align-items-center d-flex gap-2 py-1"><i class='bx bxl-skype fs-4'></i>Html5 Templates</a>
-					  <a href="javascript:;" class="list-group-item list-group-item-action align-items-center d-flex gap-2 py-1"><i class='bx bxl-twitter fs-4'></i>Responsive Html5 Templates</a>
-					  <a href="javascript:;" class="list-group-item list-group-item-action align-items-center d-flex gap-2 py-1"><i class='bx bxl-vimeo fs-4'></i>eCommerce Html Templates</a>
+					  <a href="javascript:;" class="gap-2 py-1 list-group-item list-group-item-action align-items-center d-flex"><i class='bx bxl-slack fs-4'></i>Best Html Templates</a>
+					  <a href="javascript:;" class="gap-2 py-1 list-group-item list-group-item-action align-items-center d-flex"><i class='bx bxl-skype fs-4'></i>Html5 Templates</a>
+					  <a href="javascript:;" class="gap-2 py-1 list-group-item list-group-item-action align-items-center d-flex"><i class='bx bxl-twitter fs-4'></i>Responsive Html5 Templates</a>
+					  <a href="javascript:;" class="gap-2 py-1 list-group-item list-group-item-action align-items-center d-flex"><i class='bx bxl-vimeo fs-4'></i>eCommerce Html Templates</a>
 				   </div>
 				</div>
 			</div>
@@ -213,9 +231,48 @@
 	<script src="{{asset('backend/assets/js/index.js')}}"></script>
 	<!--app JS-->
 	<script src="{{asset('backend/assets/js/app.js')}}"></script>
+    <script src="{{asset('backend/assets/js/validate.min.js')}}"></script>
+    <script src="{{ asset('backend/assets/js/code.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+
+	<!-- Data Table Javascript. It enables the search functionality and the next page functionality-->
+	<script src="{{ asset('backend/assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
+	<script src="{{ asset('backend/assets/plugins/datatable/js/dataTables.bootstrap5.min.js')}}"></script>
 	<script>
-		new PerfectScrollbar(".app-container")
+		$(document).ready(function() {
+			$('#example').DataTable();
+		  } );
 	</script>
+	  <!-- End Data Table-->
+
+
+	<script>
+		new PerfectScrollbar(".app-container");
+	</script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+	<script>
+	@if(Session::has('message'))
+	var type = "{{ Session::get('alert-type','info') }}"
+	switch(type){
+    case 'info':
+		toastr.info(" {{ Session::get('message') }} ");
+	break;
+	case 'success':
+			toastr.success(" {{ Session::get('message') }} ");
+    break;
+
+    case 'warning':
+		toastr.warning(" {{ Session::get('message') }} ");
+    break;
+
+    case 'error':
+		toastr.error(" {{ Session::get('message') }} ");
+    break;
+}
+ @endif
+ </script>
 </body>
 
 </html>
