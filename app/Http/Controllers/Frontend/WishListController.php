@@ -56,4 +56,11 @@ class WishListController extends Controller
   }
 // End Method
 
+//   Method to remove course from wishlist
+public function RemoveWishlistCourse($id){
+    
+    Wishlist::where('user_id',Auth::id())->where('id',$id)->delete();
+        return response()->json(['success' => 'Successfully Course Remove']);
+}
+// Remove
 }
