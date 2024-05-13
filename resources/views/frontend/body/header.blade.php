@@ -34,15 +34,19 @@
                         </div>
                         <ul class="flex-wrap pl-3 ml-3 generic-list-item d-flex align-items-center fs-14 border-left border-left-gray">
 
-                        @auth
-                        <li class="pr-3 mr-3 d-flex align-items-center border-right border-right-gray"><i class="mr-1 la la-sign-in"></i><a href="{{ route('dashboard') }}"> Dashboard</a></li>
-                        <li class="d-flex align-items-center"><i class="mr-1 la la-user"></i><a href="{{ route('user.logout') }}"> Logout</a></li>
+     @auth
+    <li class="pr-3 mr-3 d-flex align-items-center border-right border-right-gray"><i class="mr-1 la la-sign-in"></i><a href="{{ route('dashboard') }}"> Dashboard</a></li>
+    <li class="d-flex align-items-center"><i class="mr-1 la la-user"></i><a href="{{ route('user.logout') }}"> Logout</a></li>
 
-                        @else
-                        <li class="pr-3 mr-3 d-flex align-items-center border-right border-right-gray"><i class="mr-1 la la-sign-in"></i><a href="{{ route('login') }}"> Login</a></li>
-                        <li class="d-flex align-items-center"><i class="mr-1 la la-user"></i><a href="{{ route('register') }}"> Register</a></li>
+    @else
 
-                        @endauth
+    <li class="pr-3 mr-3 d-flex align-items-center border-right border-right-gray"><i class="mr-1 la la-sign-in"></i><a href="{{ route('login') }}"> Login</a></li>
+    <li class="d-flex align-items-center"><i class="mr-1 la la-user"></i><a href="{{ route('register') }}"> Register</a></li>
+
+    @endauth
+
+
+
 
                         </ul>
                     </div><!-- end header-widget -->
@@ -57,7 +61,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-2">
                         <div class="logo-box">
-                            <a href="{{ url('/') }}" class="logo"><img src=" {{ asset('frontend/images/logo.png') }}" alt="logo"></a>
+                            <a href="{{ url('/') }}" class="logo"><img src="{{ asset('frontend/images/logo.png')}}" alt="logo"></a>
                             <div class="user-btn-action">
                                 <div class="mr-2 shadow-sm search-menu-toggle icon-element icon-element-sm" data-toggle="tooltip" data-placement="top" title="Search">
                                     <i class="la la-search"></i>
@@ -72,106 +76,97 @@
                         </div>
                     </div><!-- end col-lg-2 -->
 
+@php
+    $categories = App\Models\Category::orderBy('category_name','ASC')->get();
+@endphp
 
-                    @php
-                        $categories = App\Models\Category::orderBy('category_name','ASC')->get();
-                    @endphp
-                    <div class="col-lg-10">
-                        <div class="menu-wrapper">
-                            <div class="menu-category">
-                                <ul>
-                                    <li>
-                                        <a href="#">Categories <i class="la la-angle-down fs-12"></i></a>
-                                        <ul class="cat-dropdown-menu">
+<div class="col-lg-10">
+    <div class="menu-wrapper">
+        <div class="menu-category">
+            <ul>
+                <li>
+                    <a href="#">Categories <i class="la la-angle-down fs-12"></i></a>
+                    <ul class="cat-dropdown-menu">
 
-                                            @foreach($categories as $cat)
+                        @foreach ($categories as $cat)
+        @php
+        $subcategories = App\Models\SubCategory::where('category_id',$cat->id)->get();
+        @endphp
+                        <li>
+                            <a href="{{ url('category/'.$cat->id.'/'.$cat->category_slug) }}">{{ $cat->category_name }}<i class="la la-angle-right"></i></a>
+                            <ul class="sub-menu">
+                                @foreach ($subcategories as $subcat)
+                                <li><a href="{{ url('subcategory/'.$subcat->id.'/'.$subcat->subcategory_slug) }}">{{ $subcat->subcategory_name }}</a></li>
+                                @endforeach
+                            </ul>
+                        </li>
+                        @endforeach
 
-                                            @php
-                                                $subcategories = App\Models\SubCategory::where('category_id',$cat->id)->get();
-                                            @endphp
-                                            <li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- end menu-category -->
+        <form method="post">
+            <div class="mb-0 form-group">
+                <input class="pl-3 form-control form--control" type="text" name="search" placeholder="Search for anything">
+                <span class="la la-search search-icon"></span>
+            </div>
+        </form>
+        <nav class="main-menu">
+            <ul>
+                <li>
+                    <a href="{{ url('/') }}">Home  </a>
 
-                                                <a href="{{ url('category/'.$cat->id.'/'.$cat->category_slug) }}"> {{ $cat->category_name }} <i class="la la-angle-right"></i></a>
-                                                <ul class="sub-menu">
-                                                    @foreach($subcategories as $subcat)
-                                                    <li><a href="{{ url('subcategory/'.$subcat->id.'/'.$subcat->subcategory_slug) }}">{{ $subcat->subcategory_name }}</a></li>
-                                                    @endforeach
-                                                </ul>
-                                            </li>
-                                            @endforeach
+                </li>
+                <li>
+                    <a href="#">courses <i class="la la-angle-down fs-12"></i></a>
+                    <ul class="dropdown-menu-item">
+                        <li><a href="course-grid.html">course grid</a></li>
+                        <li><a href="course-list.html">course list</a></li>
 
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div><!-- end menu-category -->
-                            <form method="post">
-                                <div class="mb-0 form-group">
-                                    <input class="pl-3 form-control form--control" type="text" name="search" placeholder="Search for anything">
-                                    <span class="la la-search search-icon"></span>
-                                </div>
-                            </form>
-                            <nav class="main-menu">
-                                <ul>
-                                    <li>
-                                        <a href="{{ url('/') }}">Home</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">courses <i class="la la-angle-down fs-12"></i></a>
-                                        <ul class="dropdown-menu-item">
-                                            <li><a href="course-grid.html">course grid</a></li>
-                                            <li><a href="course-list.html">course list</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="#">blog</a>
-                                    </li>
-                                </ul><!-- end ul -->
-                            </nav><!-- end main-menu -->
-                            <div class="mr-4 shop-cart">
-                                <ul>
-                                    <li>
-                                        <p class="shop-cart-btn d-flex align-items-center">
-                                            <i class="la la-shopping-cart"></i>
-                                            <span class="product-count">2</span>
-                                        </p>
-                                        <ul class="cart-dropdown-menu">
-                                            <li class="media media-card">
-                                                <a href="shopping-cart.html" class="media-img">
-                                                    <img src="images/small-img.jpg" alt="Cart image">
-                                                </a>
-                                                <div class="media-body">
-                                                    <h5><a href="course-details.html">The Complete JavaScript Course 2021: From Zero to Expert!</a></h5>
-                                                    <span class="py-1 d-block lh-18">Kamran Ahmed</span>
-                                                    <p class="text-black font-weight-semi-bold lh-18">$12.99 <span class="before-price fs-14">$129.99</span></p>
-                                                </div>
-                                            </li>
-                                            <li class="media media-card">
-                                                <a href="shopping-cart.html" class="media-img">
-                                                    <img src="images/small-img.jpg" alt="Cart image">
-                                                </a>
-                                                <div class="media-body">
-                                                    <h5><a href="course-details.html">The Complete JavaScript Course 2021: From Zero to Expert!</a></h5>
-                                                    <span class="py-1 d-block lh-18">Kamran Ahmed</span>
-                                                    <p class="text-black font-weight-semi-bold lh-18">$12.99 <span class="before-price fs-14">$129.99</span></p>
-                                                </div>
-                                            </li>
-                                            <li class="media media-card">
-                                                <div class="media-body fs-16">
-                                                    <p class="text-black font-weight-semi-bold lh-18">Total: <span class="cart-total">$12.99</span> <span class="before-price fs-14">$129.99</span></p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <a href="shopping-cart.html" class="btn theme-btn w-100">Got to cart <i class="ml-1 la la-arrow-right icon"></i></a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div><!-- end shop-cart -->
-                            <div class="nav-right-button">
-                                <a href="admission.html" class="btn theme-btn d-none d-lg-inline-block"><i class="mr-1 la la-user-plus"></i> Admission</a>
-                            </div><!-- end nav-right-button -->
-                        </div><!-- end menu-wrapper -->
-                    </div><!-- end col-lg-10 -->
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#">blog  </a>
+
+                </li>
+            </ul><!-- end ul -->
+        </nav><!-- end main-menu -->
+
+
+        <div class="mr-4 shop-cart">
+            <ul>
+                <li>
+                    <p class="shop-cart-btn d-flex align-items-center">
+                        <i class="la la-shopping-cart"></i>
+                        <span class="product-count" id="cartQty">0</span>
+                    </p>
+
+                    <ul class="cart-dropdown-menu">
+
+                        <div id="miniCart">
+
+                        </div>
+
+                        <br>
+                        <li class="media media-card">
+                            <div class="media-body fs-16">
+                                <p class="text-black font-weight-semi-bold lh-18">Total: Ksh <span class="cart-total" id="cartSubTotal"></span> </p>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="{{ route('myCart') }}" class="btn theme-btn w-100">Goto cart <i class="ml-1 la la-arrow-right icon"></i></a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- end shop-cart -->
+        <div class="nav-right-button">
+            <a href="admission.html" class="btn theme-btn d-none d-lg-inline-block"><i class="mr-1 la la-user-plus"></i> Admission</a>
+        </div><!-- end nav-right-button -->
+    </div><!-- end menu-wrapper -->
+</div><!-- end col-lg-10 -->
                 </div><!-- end row -->
             </div>
         </div><!-- end container-fluid -->
@@ -393,4 +388,4 @@
         </div>
     </div><!-- end mobile-search-form -->
     <div class="body-overlay"></div>
-</header>
+</header><!-- end header-menu-area -->

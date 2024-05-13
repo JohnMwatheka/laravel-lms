@@ -164,5 +164,15 @@ Route::get('/category/{id}/{slug}', [IndexController::class, 'CategoryCourse']);
 Route::get('/subcategory/{id}/{slug}', [IndexController::class, 'SubCategoryCourse']);
 Route::get('/instructor/details/{id}', [IndexController::class, 'InstructorDetails'])->name('instructor.details');
 Route::post('/add-to-wishlist/{course_id}', [WishListController::class, 'AddToWishList']);
+
+
+
 Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
+Route::get('/cart/data/', [CartController::class, 'CartData']);
+
+//Get data from the minicart
+Route::get('/course/mini/cart', [CartController::class, 'AddMiniCart']);
+Route::get('/minicart/course/remove/{rowId}', [CartController::class, 'RemoveMiniCart']);
+//End get data from minicart
 //End route for all
+

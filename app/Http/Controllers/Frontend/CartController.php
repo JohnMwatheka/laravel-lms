@@ -66,4 +66,42 @@ class CartController extends Controller
 
     }// End Method
 
+    // Method to show cart data
+    public function CartData(){
+        $carts = Cart::content();
+        $cartTotal = Cart::total();
+        $cartQty = Cart::count();
+
+        return response()->json(array(
+            'carts' => $carts,
+            'cartTotal' => $cartTotal,
+            'cartQty' => $cartQty,
+        ));
+    }
+    //End method
+
+    // Method to get minicart data
+    public function AddMiniCart(){
+
+        $carts = Cart::content();
+        $cartTotal = Cart::total();
+        $cartQty = Cart::count();
+
+        return response()->json(array(
+            'carts' => $carts,
+            'cartTotal' => $cartTotal,
+            'cartQty' => $cartQty,
+        ));
+
+    }// End Method
+
+    //Method to remove course from the minicart
+    public function RemoveMiniCart($rowId){
+
+
+        Cart::remove($rowId);
+        return response()->json(['success' =>'course removed from the cart']);
+
+    }
+
 }
