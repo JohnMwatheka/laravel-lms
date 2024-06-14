@@ -103,5 +103,23 @@ class CartController extends Controller
         return response()->json(['success' =>'course removed from the cart']);
 
     }
+    public function MyCart(){
+        return view('frontend.mycart.view_mycart');
+    }
+
+    // Method to get cartpage data
+    public function GetCartCourse(){
+
+        $carts = Cart::content();
+        $cartTotal = Cart::total();
+        $cartQty = Cart::count();
+
+        return response()->json(array(
+            'carts' => $carts,
+            'cartTotal' => $cartTotal,
+            'cartQty' => $cartQty,
+        ));
+
+    }// End Method
 
 }

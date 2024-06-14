@@ -273,3 +273,58 @@ function wishlistRemove(id){
     }
       </script>
       {{-- end Minicart --}}
+
+
+
+      {{-- Start cart page script --}}
+    <script type="text/javascript">
+         function cart(){
+            $.ajax({
+                type: 'GET',
+                url: '/get-cart-course',
+                dataType: 'json',
+                success:function(response){
+                    var rows = ""
+                    $.each(response.carts,function(key,value){
+
+                        rows += '
+                        <tr>
+                    <th scope="row">
+                        <div class="media media-card">
+                            <a href="course-details.html" class="mr-0 media-img">
+                                <img src="images/small-img.jpg" alt="Cart image">
+                            </a>
+                        </div>
+                    </th>
+                    <td>
+                        <a href="course-details.html" class="text-black font-weight-semi-bold">The Complete Financial Analyst Course 2019</a>
+                        <p class="fs-14 text-gray lh-20">By <a href="teacher-detail.html" class="text-color hover-underline">Mark Hardson</a>, Master Digital Marketing: Strategy, Social Media Marketing, SEO, YouTube, Email, Facebook Marketing, Analytics &amp; More!</p>
+                    </td>
+                    <td>
+                        <ul class="generic-list-item font-weight-semi-bold">
+                            <li class="text-black lh-18">$22.99</li>
+                            <li class="before-price lh-18">$55.99</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <div class="quantity-item d-flex align-items-center">
+                            <button class="qtyBtn qtyDec"><i class="la la-minus"></i></button>
+                            <input class="qtyInput" type="text" name="qty-input" value="1">
+                            <button class="qtyBtn qtyInc"><i class="la la-plus"></i></button>
+                        </div>
+                    </td>
+                    <td>
+                        <button type="button" class="border-0 shadow-sm icon-element icon-element-xs" data-toggle="tooltip" data-placement="top" title="Remove">
+                            <i class="la la-times"></i>
+                        </button>
+                    </td>
+                </tr>
+                '
+                    });
+                    $('#cartPage')
+
+                }
+            })
+         }
+    </script>
+    {{-- End  cart page script --}}

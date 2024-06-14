@@ -176,3 +176,11 @@ Route::get('/minicart/course/remove/{rowId}', [CartController::class, 'RemoveMin
 //End get data from minicart
 //End route for all
 
+
+
+//Route for cart
+Route::controller(CartController::class)->group(function(){
+    Route::get('/mycart','MyCart')->name('myCart');
+    Route::get('//get-cart-course','GetCartCourse');
+
+});
