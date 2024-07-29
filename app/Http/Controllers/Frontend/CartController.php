@@ -9,9 +9,11 @@ use App\Models\SubCategory;
 use App\Models\Course;
 use App\Models\Course_goal;
 use App\Models\CourseSection;
+use App\Models\Coupon;
 use App\Models\CourseLecture;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
@@ -125,7 +127,7 @@ class CartController extends Controller
     }// End Method
 
     public function CartRemove($rowId){
-        
+
         Cart::remove($rowId);
         return response()->json(['success' =>'course removed from the cart']);
     }
@@ -133,10 +135,39 @@ class CartController extends Controller
 
 
     // Method for coupon apply
-    public function CouponApply(Request $request){
+    public function CouponApply(Request $request)
+{
+    try {
+        $coupon = Coupon::where('coupon_name', $request->coupon_name)
+                        ->where('coupon_validity', '>=', Carbon::now()->format('Y-m-d'))
+                        ->first();
 
-        
+        if ($coupon) {
+            Session::put('coupon', [
+                'coupon_name' => $coupon->coupon_name,
+                'coupon_discount' => $coupon->coupon_discount,
+                'discount_amount' => round(Cart::total() * $coupon->coupon_discount / 100),
+                'total_amount' => round(Cart::total() - (Cart::total() * $coupon->coupon_discount / 100))
+            ]);
+
+            return response()->json([
+                'validity' => true,
+                'success' => 'Coupon applied successfully'
+            ]);
+        } else {
+            return response()->json([
+                'validity' => false,
+                'error' => 'Invalid Coupon'
+            ]);
+        }
+    } catch (\Exception $e) {
+        return response()->json([
+            'validity' => false,
+            'error' => 'Error applying coupon: ' . $e->getMessage()
+        ]);
     }
+}
+
     // End method
 
 }

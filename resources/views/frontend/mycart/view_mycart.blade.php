@@ -45,10 +45,10 @@
             </table>
             <div class="flex-wrap pt-4 d-flex align-items-center justify-content-between">
                 <form action="#">
-                    <div class="mb-2 input-group">
+                    <div class="mb-2 input-group" id="couponField">
                         <input class="pl-3 form-control form--control" type="text" id="copuon_name" placeholder="Coupon code">
                         <div class="input-group-append">
-                            <button class="btn theme-btn" type="submit" onclick="applyCoupon()">Apply Coupon</button>
+                            <a class="btn theme-btn" type="submit" onclick="applyCoupon()">Apply Coupon</a>
                         </div>
                     </div>
                 </form>

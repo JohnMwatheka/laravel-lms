@@ -399,6 +399,12 @@ const Toast = Swal.mixin({
 
             success:function(data){
 
+                if (data.validity == true) {
+
+                    $('#couponField').hide();
+
+                }
+
             }
         })
         // Start Message
