@@ -156,7 +156,7 @@
                             </div>
                         </li>
                         <li>
-                            <a href="{{ route('myCart') }}" class="btn theme-btn w-100">Goto cart <i class="ml-1 la la-arrow-right icon"></i></a>
+                            <a href="{{ route('myCart') }}" class="btn theme-btn w-100">Go to cart <i class="ml-1 la la-arrow-right icon"></i></a>
                         </li>
                     </ul>
                 </li>

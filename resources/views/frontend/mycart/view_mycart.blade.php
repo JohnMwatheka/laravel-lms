@@ -35,21 +35,20 @@
                     <th scope="col">Image</th>
                     <th scope="col">Product Details</th>
                     <th scope="col">Price</th>
-                    <th scope="col">Quantity</th>
                     <th scope="col">Action</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="cartPage">
 
 
                 </tbody>
             </table>
             <div class="flex-wrap pt-4 d-flex align-items-center justify-content-between">
-                <form method="post">
+                <form action="#">
                     <div class="mb-2 input-group">
-                        <input class="pl-3 form-control form--control" type="text" name="search" placeholder="Coupon code">
+                        <input class="pl-3 form-control form--control" type="text" id="copuon_name" placeholder="Coupon code">
                         <div class="input-group-append">
-                            <button class="btn theme-btn">Apply Code</button>
+                            <button class="btn theme-btn" type="submit" onclick="applyCoupon()">Apply Coupon</button>
                         </div>
                     </div>
                 </form>
@@ -62,12 +61,12 @@
                 <div class="divider"><span></span></div>
                 <ul class="pb-4 generic-list-item">
                     <li class="d-flex align-items-center justify-content-between font-weight-semi-bold">
-                        <span class="text-black">Subtotal:</span>
-                        <span>$44.99</span>
+                        <span class="text-black">Subtotal: Ksh. </span>
+                        <span id="cartSubTotal"> </span>
                     </li>
                     <li class="d-flex align-items-center justify-content-between font-weight-semi-bold">
-                        <span class="text-black">Total:</span>
-                        <span>$44.99</span>
+                        <span class="text-black">Total: Ksh. </span>
+                        <span id="cartSubTotal"> </span>
                     </li>
                 </ul>
                 <a href="checkout.html" class="btn theme-btn w-100">Checkout <i class="ml-1 la la-arrow-right icon"></i></a>
@@ -78,6 +77,10 @@
 <!-- ================================
        END CONTACT AREA
 ================================= -->
+
+
+
+
 
 
 

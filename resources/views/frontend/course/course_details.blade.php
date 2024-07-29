@@ -496,10 +496,10 @@
                                 <p class="preview-price-discount-text pb-35px">
                                     <span class="text-color-3">4 days</span> left at this price!
                                 </p>
-                                <div class="buy-course-btn-box">
-                                    <button type="button" class="mb-2 btn theme-btn w-100"><i class="mr-1 la la-shopping-cart fs-18"></i> Add to cart</button>
-                                    <button type="button" class="mb-2 btn theme-btn w-100 theme-btn-white"><i class="mr-1 la la-shopping-bag"></i> Buy this course</button>
-                                </div>
+                        <div class="buy-course-btn-box">
+                            <button type="submit" class="mb-2 btn theme-btn w-100" onclick="addToCart({{ $course->id }},'{{ $course->course_name }}', '{{ $course->instructor_id }}', '{{ $course->course_name_slug }}')"><i class="mr-1 la la-shopping-cart fs-18"></i> Add to cart</button>
+                            <button type="button" class="mb-2 btn theme-btn w-100 theme-btn-white"><i class="mr-1 la la-shopping-bag"></i> Buy this course</button>
+                        </div>
                                 <p class="pb-4 text-center fs-14">30-Day Money-Back Guarantee</p>
                                 <div class="preview-course-incentives">
                                     <h3 class="pb-2 card-title fs-18">This course includes</h3>

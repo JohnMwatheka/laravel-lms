@@ -103,9 +103,11 @@ class CartController extends Controller
         return response()->json(['success' =>'course removed from the cart']);
 
     }
+    // Go to cart method
     public function MyCart(){
         return view('frontend.mycart.view_mycart');
     }
+    // end method
 
     // Method to get cartpage data
     public function GetCartCourse(){
@@ -121,5 +123,20 @@ class CartController extends Controller
         ));
 
     }// End Method
+
+    public function CartRemove($rowId){
+        
+        Cart::remove($rowId);
+        return response()->json(['success' =>'course removed from the cart']);
+    }
+    // End Method
+
+
+    // Method for coupon apply
+    public function CouponApply(Request $request){
+
+        
+    }
+    // End method
 
 }
