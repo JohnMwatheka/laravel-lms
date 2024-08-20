@@ -11,14 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('smtp_settings', function (Blueprint $table) {
             $table->id();
-            $table->integer('payment_id');
-            $table->integer('user_id')->nullable();
-            $table->integer('course_id')->nullable();
-            $table->integer('instructor_id')->nullable();
-            $table->string('course_title')->nullable();
-            $table->integer('price')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('smtp_settings');
     }
 };

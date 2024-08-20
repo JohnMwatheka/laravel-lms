@@ -36,7 +36,7 @@
                         <div class="divider"><span></span></div>
 
 
-                        <form method="post" action="" class="row" enctype="multipart/form-data">
+                        <form method="post" action="{{ route('payment') }}" class="row" enctype="multipart/form-data">
                             @csrf
 
                             <div class="input-box col-lg-6">
