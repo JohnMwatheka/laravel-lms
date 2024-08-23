@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\WishListController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Backend\SettingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -132,6 +133,14 @@ Route::controller(AdminController::class)->group(function(){
 
 });
 // end admin all coupon route
+
+//Group controller for all smtp. 
+Route::controller(SettingController::class)->group(function(){
+    Route::get('/smtp/setting','SmtpSetting')->name('smtp.setting');
+    Route::post('/update/smtp','SmtpUpdate')->name('update.smtp');
+   
+
+});
 
 });
 

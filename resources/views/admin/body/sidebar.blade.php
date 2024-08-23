@@ -60,14 +60,15 @@
 						</li>
 					</ul>
 				</li>
-                <li>
+                
+				<li>
 					<a class="has-arrow" href="javascript:;">
 						<div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
 						</div>
-						<div class="menu-title">Manage Coupon</div>
+						<div class="menu-title">Mail Setting</div>
 					</a>
 					<ul>
-						<li> <a href="{{ route('admin.all.coupon') }}"><i class='bx bx-radio-circle'></i>All Coupon</a>
+						<li> <a href="{{ route('smtp.setting') }}"><i class='bx bx-radio-circle'></i>Manage SMTP</a>
 						</li>
 
 						</li>
