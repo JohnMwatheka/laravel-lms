@@ -1,27 +1,27 @@
 <header class="header-menu-area">
-    <div class="header-menu-content dashboard-menu-content pr-30px pl-30px bg-white shadow-sm">
+    <div class="bg-white shadow-sm header-menu-content dashboard-menu-content pr-30px pl-30px">
         <div class="container-fluid">
             <div class="main-menu-content">
                 <div class="row align-items-center">
                     <div class="col-lg-12">
                         <div class="logo-box logo--box">
-                            <a href="index.html" class="logo"><img src="{{ asset('frontend/images/logo.png') }}" alt="logo"></a>
+                            <a href="{{ url('/') }}" class="logo"><img src="{{ asset('frontend/images/logo.png') }}" alt="logo"></a>
                             <div class="user-btn-action">
-                                <div class="search-menu-toggle icon-element icon-element-sm shadow-sm mr-2" data-toggle="tooltip" data-placement="top" title="Search">
+                                <div class="mr-2 shadow-sm search-menu-toggle icon-element icon-element-sm" data-toggle="tooltip" data-placement="top" title="Search">
                                     <i class="la la-search"></i>
                                 </div>
-                                <div class="off-canvas-menu-toggle cat-menu-toggle icon-element icon-element-sm shadow-sm mr-2" data-toggle="tooltip" data-placement="top" title="Category menu">
+                                <div class="mr-2 shadow-sm off-canvas-menu-toggle cat-menu-toggle icon-element icon-element-sm" data-toggle="tooltip" data-placement="top" title="Category menu">
                                     <i class="la la-th-large"></i>
                                 </div>
-                                <div class="off-canvas-menu-toggle main-menu-toggle icon-element icon-element-sm shadow-sm" data-toggle="tooltip" data-placement="top" title="Main menu">
+                                <div class="shadow-sm off-canvas-menu-toggle main-menu-toggle icon-element icon-element-sm" data-toggle="tooltip" data-placement="top" title="Main menu">
                                     <i class="la la-bars"></i>
                                 </div>
                             </div>
                         </div><!-- end logo-box -->
                         <div class="menu-wrapper">
-                            <form method="post" class="mr-auto ml-0">
-                                <div class="form-group mb-0">
-                                    <input class="form-control form--control form--control-gray pl-3" type="text" name="search" placeholder="Search for anything">
+                            <form method="post" class="ml-0 mr-auto">
+                                <div class="mb-0 form-group">
+                                    <input class="pl-3 form-control form--control form--control-gray" type="text" name="search" placeholder="Search for anything">
                                     <span class="la la-search search-icon"></span>
                                 </div>
                             </form>
@@ -29,7 +29,7 @@
                                 <div class="user-action-wrap d-flex align-items-center">
 
 
-    <div class="shop-cart wishlist-cart pr-3 mr-3 border-right border-right-gray">
+    <div class="pr-3 mr-3 shop-cart wishlist-cart border-right border-right-gray">
         <ul>
             <li>
                 <p class="shop-cart-btn">
@@ -44,11 +44,11 @@
                             </a>
                             <div class="media-body">
                                 <h5><a href="course-details.html">The Complete JavaScript Course 2021: From Zero to Expert!</a></h5>
-                                <span class="d-block lh-18 py-1">Kamran Ahmed</span>
+                                <span class="py-1 d-block lh-18">Kamran Ahmed</span>
                                 <p class="text-black font-weight-semi-bold lh-18">$12.99 <span class="before-price fs-14">$129.99</span></p>
                             </div>
                         </div>
-                        <a href="#" class="btn theme-btn theme-btn-sm theme-btn-transparent lh-28 w-100 mt-3">Add to cart <i class="la la-arrow-right icon ml-1"></i></a>
+                        <a href="#" class="mt-3 btn theme-btn theme-btn-sm theme-btn-transparent lh-28 w-100">Add to cart <i class="ml-1 la la-arrow-right icon"></i></a>
                     </li>
                     <li>
                         <div class="media media-card">
@@ -57,27 +57,27 @@
                             </a>
                             <div class="media-body">
                                 <h5><a href="course-details.html">The Complete JavaScript Course 2021: From Zero to Expert!</a></h5>
-                                <span class="d-block lh-18 py-1">Kamran Ahmed</span>
+                                <span class="py-1 d-block lh-18">Kamran Ahmed</span>
                                 <p class="text-black font-weight-semi-bold lh-18">$12.99 <span class="before-price fs-14">$129.99</span></p>
                             </div>
                         </div>
-                        <a href="#" class="btn theme-btn theme-btn-sm theme-btn-transparent lh-28 w-100 mt-3">Add to cart <i class="la la-arrow-right icon ml-1"></i></a>
+                        <a href="#" class="mt-3 btn theme-btn theme-btn-sm theme-btn-transparent lh-28 w-100">Add to cart <i class="ml-1 la la-arrow-right icon"></i></a>
                     </li>
                     <li>
-                        <a href="my-courses.html" class="btn theme-btn w-100">Got to wishlist <i class="la la-arrow-right icon ml-1"></i></a>
+                        <a href="{{ route('user.wishlist') }}" class="btn theme-btn w-100">Got to wishlist <i class="ml-1 la la-arrow-right icon"></i></a>
                     </li>
                 </ul>
             </li>
         </ul>
     </div><!-- end shop-cart -->
-    <div class="shop-cart notification-cart pr-3 mr-3 border-right border-right-gray">
+    <div class="pr-3 mr-3 shop-cart notification-cart border-right border-right-gray">
         <ul>
             <li>
                 <p class="shop-cart-btn">
                     <i class="la la-bell"></i>
                     <span class="dot-status bg-1"></span>
                 </p>
-                <ul class="cart-dropdown-menu after-none p-0 notification-dropdown-menu">
+                <ul class="p-0 cart-dropdown-menu after-none notification-dropdown-menu">
                     <li class="menu-heading-block d-flex align-items-center justify-content-between">
                         <h4>Notifications</h4>
                         <span class="ribbon fs-14">18</span>
@@ -85,36 +85,36 @@
                     <li>
                         <div class="notification-body">
                             <a href="dashboard.html" class="media media-card align-items-center">
-                                <div class="icon-element icon-element-sm flex-shrink-0 bg-1 mr-3 text-white">
+                                <div class="flex-shrink-0 mr-3 text-white icon-element icon-element-sm bg-1">
                                     <i class="la la-bolt"></i>
                                 </div>
                                 <div class="media-body">
                                     <h5>Your resume updated!</h5>
-                                    <span class="d-block lh-18 pt-1 text-gray fs-13">1 hour ago</span>
+                                    <span class="pt-1 d-block lh-18 text-gray fs-13">1 hour ago</span>
                                 </div>
                             </a>
                             <a href="dashboard.html" class="media media-card align-items-center">
-                                <div class="icon-element icon-element-sm flex-shrink-0 bg-2 mr-3 text-white">
+                                <div class="flex-shrink-0 mr-3 text-white icon-element icon-element-sm bg-2">
                                     <i class="la la-lock"></i>
                                 </div>
                                 <div class="media-body">
                                     <h5>You changed password</h5>
-                                    <span class="d-block lh-18 pt-1 text-gray fs-13">November 12, 2019</span>
+                                    <span class="pt-1 d-block lh-18 text-gray fs-13">November 12, 2019</span>
                                 </div>
                             </a>
                             <a href="dashboard.html" class="media media-card align-items-center">
-                                <div class="icon-element icon-element-sm flex-shrink-0 bg-3 mr-3 text-white">
+                                <div class="flex-shrink-0 mr-3 text-white icon-element icon-element-sm bg-3">
                                     <i class="la la-user"></i>
                                 </div>
                                 <div class="media-body">
                                     <h5>Your account has been created successfully</h5>
-                                    <span class="d-block lh-18 pt-1 text-gray fs-13">November 12, 2019</span>
+                                    <span class="pt-1 d-block lh-18 text-gray fs-13">November 12, 2019</span>
                                 </div>
                             </a>
                         </div>
                     </li>
                     <li class="menu-heading-block">
-                        <a href="dashboard.html" class="btn theme-btn w-100">Show All Notifications <i class="la la-arrow-right icon ml-1"></i></a>
+                        <a href="dashboard.html" class="btn theme-btn w-100">Show All Notifications <i class="ml-1 la la-arrow-right icon"></i></a>
                     </li>
                 </ul>
             </li>
@@ -137,9 +137,9 @@
                     </div>
                     <span class="dot-status bg-1"></span>
                 </div>
-                <ul class="cart-dropdown-menu after-none p-0 notification-dropdown-menu">
+                <ul class="p-0 cart-dropdown-menu after-none notification-dropdown-menu">
                     <li class="menu-heading-block d-flex align-items-center">
-                        <a href="teacher-detail.html" class="avatar-sm flex-shrink-0 d-block">
+                        <a href="teacher-detail.html" class="flex-shrink-0 avatar-sm d-block">
                             <img class="rounded-full img-fluid" src="{{ (!empty($profileData->photo)) ? url('upload/user_images/'.$profileData->photo) : url('upload/no_image.jpg')}}" alt="Avatar image">
                         </a>
     <div class="ml-2">
@@ -177,34 +177,34 @@
 
                             <li>
                                 <a href="dashboard-settings.html">
-                                    <i class="la la-gear mr-1"></i> Settings
+                                    <i class="mr-1 la la-gear"></i> Settings
                                 </a>
                             </li>
                             <li>
                                 <a href="dashboard-purchase-history.html">
-                                    <i class="la la-history mr-1"></i> Purchase history
+                                    <i class="mr-1 la la-history"></i> Purchase history
                                 </a>
                             </li>
                             <li><div class="section-block"></div></li>
                             <li>
-                                <a href="student-detail.html">
-                                    <i class="la la-user mr-1"></i> Public profile
+                                <a href="{{ route('user_profile') }}">
+                                    <i class="mr-1 la la-user"></i> Public profile
                                 </a>
                             </li>
                             <li>
-                                <a href="dashboard-settings.html">
-                                    <i class="la la-edit mr-1"></i> Edit profile
+                                <a href="{{ route('user_profile') }}nj">
+                                    <i class="mr-1 la la-edit"></i> Edit profile
                                 </a>
                             </li>
                             <li><div class="section-block"></div></li>
                             <li>
                                 <a href="#">
-                                    <i class="la la-question mr-1"></i> Help
+                                    <i class="mr-1 la la-question"></i> Help
                                 </a>
                             </li>
                             <li>
-                                <a href="index.html">
-                                    <i class="la la-power-off mr-1"></i> Logout
+                                <a href="{{ route('user.logout')}}">
+                                    <i class="mr-1 la la-power-off"></i> Logout
                                 </a>
                             </li>
                             <li><div class="section-block"></div></li>
@@ -212,7 +212,7 @@
                                 <a href="#" class="position-relative">
                                     <span class="fs-17 font-weight-semi-bold d-block">Aduca for Business</span>
                                     <span class="lh-20 d-block fs-14 text-gray">Bring learning to your company</span>
-                                    <span class="position-absolute top-0 right-0 mt-3 mr-3 fs-18 text-gray">
+                                    <span class="top-0 right-0 mt-3 mr-3 position-absolute fs-18 text-gray">
                                     <i class="la la-external-link"></i>
                                 </span>
                                 </a>
@@ -232,35 +232,35 @@
         </div><!-- end container-fluid -->
     </div><!-- end header-menu-content -->
     <div class="off-canvas-menu custom-scrollbar-styled main-off-canvas-menu">
-        <div class="off-canvas-menu-close main-menu-close icon-element icon-element-sm shadow-sm" data-toggle="tooltip" data-placement="left" title="Close menu">
+        <div class="shadow-sm off-canvas-menu-close main-menu-close icon-element icon-element-sm" data-toggle="tooltip" data-placement="left" title="Close menu">
             <i class="la la-times"></i>
         </div><!-- end off-canvas-menu-close -->
         <h4 class="off-canvas-menu-heading pt-90px">Alerts</h4>
-        <ul class="generic-list-item off-canvas-menu-list pt-1 pb-2 border-bottom border-bottom-gray">
+        <ul class="pt-1 pb-2 generic-list-item off-canvas-menu-list border-bottom border-bottom-gray">
             <li><a href="dashboard.html">Notifications</a></li>
             <li><a href="dashboard-message.html">Messages</a></li>
             <li><a href="my-courses.html">Wishlist</a></li>
             <li><a href="shopping-cart.html">My cart</a></li>
         </ul>
         <h4 class="off-canvas-menu-heading pt-20px">Account</h4>
-        <ul class="generic-list-item off-canvas-menu-list pt-1 pb-2 border-bottom border-bottom-gray">
+        <ul class="pt-1 pb-2 generic-list-item off-canvas-menu-list border-bottom border-bottom-gray">
             <li><a href="dashboard-settings.html">Account settings</a></li>
             <li><a href="dashboard-purchase-history.html">Purchase history</a></li>
         </ul>
         <h4 class="off-canvas-menu-heading pt-20px">Profile</h4>
-        <ul class="generic-list-item off-canvas-menu-list pt-1 pb-2 border-bottom border-bottom-gray">
+        <ul class="pt-1 pb-2 generic-list-item off-canvas-menu-list border-bottom border-bottom-gray">
             <li><a href="student-detail.html">Public profile</a></li>
             <li><a href="dashboard-settings.html">Edit profile</a></li>
             <li><a href="index.html">Log out</a></li>
         </ul>
         <h4 class="off-canvas-menu-heading pt-20px">More from Aduca</h4>
-        <ul class="generic-list-item off-canvas-menu-list pt-1">
+        <ul class="pt-1 generic-list-item off-canvas-menu-list">
             <li><a href="for-business.html">Aduca for Business</a></li>
             <li><a href="#">Get the app</a></li>
             <li><a href="invite.html">Invite friends</a></li>
             <li><a href="contact.html">Help</a></li>
         </ul>
-        <div class="theme-picker d-flex align-items-center justify-content-center mt-4 px-3">
+        <div class="px-3 mt-4 theme-picker d-flex align-items-center justify-content-center">
             <button class="theme-picker-btn dark-mode-btn btn theme-btn-sm theme-btn-white w-100 font-weight-semi-bold justify-content-center" title="Dark mode">
                 <svg class="mr-1" viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
@@ -284,15 +284,15 @@
         </div>
     </div><!-- end off-canvas-menu -->
     <div class="off-canvas-menu custom-scrollbar-styled category-off-canvas-menu">
-        <div class="off-canvas-menu-close cat-menu-close icon-element icon-element-sm shadow-sm" data-toggle="tooltip" data-placement="left" title="Close menu">
+        <div class="shadow-sm off-canvas-menu-close cat-menu-close icon-element icon-element-sm" data-toggle="tooltip" data-placement="left" title="Close menu">
             <i class="la la-times"></i>
         </div><!-- end off-canvas-menu-close -->
         <h4 class="off-canvas-menu-heading pt-90px">Learn</h4>
-        <ul class="generic-list-item off-canvas-menu-list pt-1 pb-2 border-bottom border-bottom-gray">
+        <ul class="pt-1 pb-2 generic-list-item off-canvas-menu-list border-bottom border-bottom-gray">
             <li><a href="my-courses.html">My learning</a></li>
         </ul>
         <h4 class="off-canvas-menu-heading pt-20px">Categories</h4>
-        <ul class="generic-list-item off-canvas-menu-list pt-1">
+        <ul class="pt-1 generic-list-item off-canvas-menu-list">
             <li>
                 <a href="course-grid.html">Development</a>
                 <ul class="sub-menu">
@@ -413,13 +413,13 @@
     </div><!-- end off-canvas-menu -->
     <div class="mobile-search-form">
         <div class="d-flex align-items-center">
-            <form method="post" class="flex-grow-1 mr-3">
-                <div class="form-group mb-0">
-                    <input class="form-control form--control pl-3" type="text" name="search" placeholder="Search for anything">
+            <form method="post" class="mr-3 flex-grow-1">
+                <div class="mb-0 form-group">
+                    <input class="pl-3 form-control form--control" type="text" name="search" placeholder="Search for anything">
                     <span class="la la-search search-icon"></span>
                 </div>
             </form>
-            <div class="search-bar-close icon-element icon-element-sm shadow-sm">
+            <div class="shadow-sm search-bar-close icon-element icon-element-sm">
                 <i class="la la-times"></i>
             </div><!-- end off-canvas-menu-close -->
         </div>

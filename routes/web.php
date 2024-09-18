@@ -12,6 +12,7 @@ use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\WishListController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Backend\SettingController;
+use App\Http\Controllers\Backend\OrderController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -134,13 +135,21 @@ Route::controller(AdminController::class)->group(function(){
 });
 // end admin all coupon route
 
-//Group controller for all smtp. 
-Route::controller(SettingController::class)->group(function(){
-    Route::get('/smtp/setting','SmtpSetting')->name('smtp.setting');
-    Route::post('/update/smtp','SmtpUpdate')->name('update.smtp');
-   
+    //Group controller for all smtp. 
+    Route::controller(SettingController::class)->group(function(){
+        Route::get('/smtp/setting','SmtpSetting')->name('smtp.setting');
+        Route::post('/update/smtp','SmtpUpdate')->name('update.smtp');
+    
 
-});
+    });
+        //Group route for all Admin Order. 
+        Route::controller(OrderController::class)->group(function(){
+            Route::get('/admin/pending/order','AdminPendingOrder')->name('admin.pending.order');
+            Route::get('/admin/order/details/{id}','AdminOrderDetails')->name('admin.order.details');
+           
+        
+    
+        });
 
 });
 
@@ -213,6 +222,7 @@ Route::post('/add-to-wishlist/{course_id}', [WishListController::class, 'AddToWi
 
 
 Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
+Route::post('/buy/data/store/{id}', [CartController::class, 'BuyToCart']);
 Route::get('/cart/data/', [CartController::class, 'CartData']);
 
 //Get data from the minicart

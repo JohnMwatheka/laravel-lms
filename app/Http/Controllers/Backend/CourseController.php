@@ -296,7 +296,7 @@ public function DeleteCourse($id){
     unlink($course->video);
 
     // Delete course from database
-    $course->delete();
+      $course->delete();
 
     // Delete associated goals data
     Course_goal::where('course_id', $id)->delete();

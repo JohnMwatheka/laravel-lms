@@ -545,3 +545,58 @@ const Toast = Swal.mixin({
 
 </script>
 {{-- End Coupon remove script --}}
+
+
+
+{{-- /// Start buyNow  // --}}
+<script type="text/javascript">
+
+    function buyCourse(courseId, courseName, instructorId, slug){
+         $.ajax({
+             type: "POST",
+             dataType: 'json',
+             data: { 
+                 _token: '{{ csrf_token() }}',
+                 course_name: courseName,
+                 course_name_slug: slug,
+                 instructor: instructorId
+             },
+ 
+             url: "/buy/data/store/"+ courseId,
+             success: function(data) {
+                 miniCart();
+ 
+                  // Start Message 
+ 
+             const Toast = Swal.mixin({
+                   toast: true,
+                   position: 'top-end',
+                   showConfirmButton: false,
+                   timer: 3000 
+             })
+             if ($.isEmptyObject(data.error)) {
+                     
+                     Toast.fire({
+                     type: 'success', 
+                     icon: 'success', 
+                     title: data.success, 
+                     });
+                     //To redirect to checkout page on success
+                     window.location.href ='/checkout';
+ 
+             }else{
+                
+            Toast.fire({
+                     type: 'error', 
+                     icon: 'error', 
+                     title: data.error, 
+                     })
+                 }
+ 
+               // End Message   
+             } 
+         });
+    }
+ 
+ </script>
+      {{-- /// End Buynow // --}}
