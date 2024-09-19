@@ -26,24 +26,45 @@
                 <div class="col-lg-6">
                     <div class="card">
 
-                        <form method="POST" action="{{ route('admin.profile.store') }}"  enctype="multipart/form-data">
-                            @csrf
-
                         <div class="card-body">
                             <div class="mb-3 row">
                                 <div class="col-sm-3">
                                     <h6 class="mb-0">Name</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    dfghjk
+                                    {{ $payment->name }}
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <div class="col-sm-3">
-                                    <h6 class="mb-0">User Name</h6>
+                                    <h6 class="mb-0">Email</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                   rtyuikl
+                                    {{ $payment->email }}
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Phone</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    {{ $payment->phone }}
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Address</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    {{ $payment->address }}
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Payment Type</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <strong>  {{ $payment->payment_type }}</strong> 
                                 </div>
                             </div>
                             
@@ -52,43 +73,111 @@
 
                             
                         </div>
-                    </form>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="card">
 
-                        <form method="POST" action="{{ route('admin.profile.store') }}"  enctype="multipart/form-data">
-                            @csrf
-
+                      
                         <div class="card-body">
                             <div class="mb-3 row">
                                 <div class="col-sm-3">
-                                    <h6 class="mb-0">Name</h6>
+                                    <h6 class="mb-0">Amount</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    dfghjk
+                                    Ksh. {{ $payment->total_amount }}
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <div class="col-sm-3">
-                                    <h6 class="mb-0">User Name</h6>
+                                    <h6 class="mb-0">Invoice Number</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                   rtyuikl
+                                   {{ $payment->invoice_no }}
                                 </div>
                             </div>
-                            
-
+                            <div class="mb-3 row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Order Date</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    {{ $payment->order_date }} 
+                                </div>
+                            </div>                      
+                            <div class="mb-3 row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Status</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    @if($payment->status == 'pending')
+                                    <a href="" class="btn btn-lock btn-success">Confirm order</a>
+                                        
+                                    @elseif($payment->status =='confirm')
+                                    <a href="" class="btn btn-lock btn-success">Confirm order</a>
+                                    @endif 
+                                </div>
+                            </div>
 
 
                             
                         </div>
-                    </form>
+                
                     </div>
 
 
 
+                </div>
+            </div>
+            <div class="card radius-10">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1 ms-3">
+                            <div class="table-responsive">
+                                <table class="table" style="font-weight: 600;">
+                                    <tbody>
+                                        <tr>
+                                            <td class="col-md-1">
+                                                <label for="">Image</label>
+                                            </td>
+                                            <td class="col-md-2">
+                                                <label for="">Course Name</label>
+                                            </td>
+                                            <td class="col-md-2">
+                                                <label for="">Category</label>
+                                            </td>
+                                            <td class="col-md-2">
+                                                <label for="">Instructor</label>
+                                            </td>
+                                            <td class="col-md-2">
+                                                <label for="">Price</label>
+                                            </td>
+                                        </tr>
+                                        @foreach ( $orderItem as $item )
+                                            
+                                        
+                                            <tr>
+                                                <td class="col-md-1">
+                                                    <label><img src="{{ asset($item->course->course_image) }}" alt="" style="width:50px; height:50px;" class="rounded-circle"></label>
+                                                </td>
+                                                <td class="col-md-2">
+                                                    <label>{{ $item->course->course_name }}</label>
+                                                </td>
+                                                <td class="col-md-2">
+                                                    <label for="">{{ $item->course->category->category_name }}</label>
+                                                </td>
+                                                <td class="col-md-2">
+                                                    <label for="">{{ $item->instructor ->name }}</label>
+                                                </td>
+                                                <td class="col-md-2">
+                                                    <label for=""> Ksh. {{ $item->price }}</label>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
