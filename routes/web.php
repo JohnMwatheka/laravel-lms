@@ -146,6 +146,9 @@ Route::controller(AdminController::class)->group(function(){
         Route::controller(OrderController::class)->group(function(){
             Route::get('/admin/pending/order','AdminPendingOrder')->name('admin.pending.order');
             Route::get('/admin/order/details/{id}','AdminOrderDetails')->name('admin.order.details');
+            Route::get('/pendin-confirm/{id}','PendingToConfirm')->name('pending-confirm');
+            Route::get('/admin/confirm/order','AdminConfirmOrder')->name('admin.confirm.order');
+            
            
         
     

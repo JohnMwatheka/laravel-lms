@@ -40,4 +40,23 @@ class OrderController extends Controller
         return view('admin.backend.orders.admin_order_details',compact('payment', 'orderItem'));
 
     }//End Method
+
+    //Method for confiming pending orders from admin dashboard
+    public function PendingToConfirm($payment_id){
+        Payment::find($payment_id)->update(['status' => 'confirm']);
+        $notification = array(
+            'message' => 'Order Confrim Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('admin.confirm.order')->with($notification);  
+
+    }//End Method
+    //Method to show all confirmed orders on admin dashboard
+    public function AdminConfirmOrder(){
+
+        $payment = Payment::where ('status','confirm')->orderBy('id','DESC')->get();
+        return view('admin.backend.orders.confirm_orders',compact('payment'));
+    }
+    //End Method
+
 }

@@ -110,7 +110,7 @@
                                 </div>
                                 <div class="col-sm-9 text-secondary">
                                     @if($payment->status == 'pending')
-                                    <a href="" class="btn btn-lock btn-success">Confirm order</a>
+                                    <a href="{{ route('pending-confirm', $payment->id) }}" class="btn btn-lock btn-success" id="confirm">Confirm order</a>
                                         
                                     @elseif($payment->status =='confirm')
                                     <a href="" class="btn btn-lock btn-success">Confirm order</a>
@@ -152,6 +152,11 @@
                                                 <label for="">Price</label>
                                             </td>
                                         </tr>
+
+
+                                        @php
+                                            $totalPrice = 0;
+                                        @endphp
                                         @foreach ( $orderItem as $item )
                                             
                                         
@@ -172,7 +177,20 @@
                                                     <label for=""> Ksh. {{ $item->price }}</label>
                                                 </td>
                                             </tr>
+
+
+                                            @php
+                                                $totalPrice +=$item->price;
+                                            @endphp
                                         @endforeach
+                                        <tr>
+                                            <td colspan="4"></td>
+                                            <td class="col-md-3">
+                                                <strong>Total Price: ${{ $totalPrice }}</strong>
+                                            </td>
+                                        </tr>
+
+                                        
                                     </tbody>
                                 </table>
                             </div>
