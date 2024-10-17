@@ -20,6 +20,9 @@ use Illuminate\Support\Facades\Session;
 use App\Models\Payment;
 use App\Models\Order;
 use Illuminate\Support\Facades\Mail;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\DB;
+
 
 class OrderController extends Controller
 {
@@ -58,5 +61,43 @@ class OrderController extends Controller
         return view('admin.backend.orders.confirm_orders',compact('payment'));
     }
     //End Method
+
+    //Method to show all orders on instructor dashboard
+    public function InstructorAllOrder() {
+
+        $id = Auth::user()->id;
+    
+        $latestOrderItem = Order::where('instructor_id', $id)
+            ->select('payment_id', DB::raw('MAX(id) as max_id'))
+            ->groupBy('payment_id');
+    
+        $orderItem = Order::joinSub($latestOrderItem, 'latest_order', function($join) {
+            $join->on('orders.id', '=', 'latest_order.max_id');
+        })->orderBy('latest_order.max_id', 'DESC')->get();
+    
+        return view('instructor.orders.all_orders', compact('orderItem'));
+    }//End method
+
+    //Method to show order details on intructor page
+    public function InstructorOrderDetails($payment_id){
+        $payment = Payment::where('id',$payment_id)->first();
+        $orderItem = Order::where('payment_id',$payment_id)->orderBy('id','DESC')->get();
+        return view('instructor.orders.instructor_order_details',compact('payment','orderItem'));
+    }//End Method
+
+    //Method to show order details on intructor page
+    public function InstructorOrderInvoice($payment_id){
+
+        $payment = Payment::where('id',$payment_id)->first();
+        $orderItem = Order::where('payment_id',$payment_id)->orderBy('id','DESC')->get();
+
+        $pdf = Pdf::loadView('instructor.orders.order_pdf',compact('payment','orderItem'))->setPaper('a4')->setOption([
+            'tempDir' => public_path(),
+            'chroot' => public_path(),
+        ]);
+        return $pdf->download('invoice.pdf');
+
+    }//End Method
+
 
 }

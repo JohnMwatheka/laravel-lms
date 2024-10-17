@@ -170,16 +170,19 @@ Route::post('/instructor/register', [AdminController::class, 'InstructorRegister
 
 
 //Instructor role middleware
+
+///// Instructor Group Middleware
 Route::middleware(['auth','role:instructor'])->group(function(){
+
+
 Route::get('/instructor/dashboard', [InstructorController::class, 'InstructorDashboard'])->name('instructor.dashboard');
 Route::get('/instructor/logout', [InstructorController::class, 'InstructorLogout'])->name('instructor.logout');
 Route::get('/instructor/profile', [InstructorController::class, 'InstructorProfile'])->name('instructor.profile');
 Route::post('/instructor/profile/store', [InstructorController::class, 'InstructorProfileStore'])->name('instructor.profile.store');
 Route::get('/instructor/change/password', [InstructorController::class, 'InstructorChangePassword'])->name('instructor.change.password');
 Route::post('/instructor/password/update', [InstructorController::class, 'InstructorPasswordUpdate'])->name('instructor.password.update');
-});
 
-//end instructor middleware
+
 
 
 
@@ -205,13 +208,28 @@ Route::controller(CourseController::class)->group(function(){
     Route::get('/add/course/lecture/{id}','AddCourseLecture')->name('add.course.lecture');
     Route::post('/add/course/section/','AddCourseSection')->name('add.course.section');
 
-    Route::post('/save-lecture/','SaveLecture')->name('save-lecture');
+    Route::post('/save-lecture','SaveLecture')->name('save-lecture');
 
     Route::get('/edit/lecture/{id}','EditLecture')->name('edit.lecture');
     Route::post('/update/course/lecture','UpdateCourseLecture')->name('update.course.lecture');
     Route::get('/delete/lecture/{id}','DeleteLecture')->name('delete.lecture');
     Route::post('/delete/section/{id}','DeleteSection')->name('delete.section');
 });
+
+//Group route for all Instructor Order. 
+Route::controller(OrderController::class)->group(function(){
+    Route::get('/instructor/all/orders','InstructorAllOrder')->name('instructor.all.order');
+    Route::get('/instructor/order/details/{payment_id}','InstructorOrderDetails')->name('instructor.order.details');
+    Route::get('/instructor/order/invoice/{payment_id}','InstructorOrderInvoice')->name('instructor.order.invoice');
+    
+    
+    
+
+
+});
+
+
+});//end instructor middleware
 
 
 // Route accessible for all
