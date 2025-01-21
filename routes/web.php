@@ -44,9 +44,17 @@ Route::middleware('auth')->group(function () {
     // User wishlist all route
     Route::controller(WishListController::class)->group(function(){
         Route::get('/user/wishlist','AllWishlist')->name('user.wishlist');
-        Route::get('/get-wishlist-course/','GetWishlistCourse');
+        Route::get('/get-wishlist-course','GetWishlistCourse');
         Route::get('/wishlist-remove/{id}','RemoveWishlistCourse');
     });
+
+
+     // User mycourse all route
+     Route::controller(OrderController::class)->group(function(){
+        Route::get('/my/course','MyCourse')->name('my.course');
+        Route::get('/course/view/{course_id}','CourseView')->name('course.view');       
+    });
+
 
 });
 // End auth middleware

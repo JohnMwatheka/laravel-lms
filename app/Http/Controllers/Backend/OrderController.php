@@ -99,5 +99,35 @@ class OrderController extends Controller
 
     }//End Method
 
+    //Method to show  student course
+    public function MyCourse(){
+
+        $id = Auth::user()->id;
+        $latestOrders = Order::where('user_id', $id)
+            ->select('course_id', DB::raw('MAX(id) as max_id'))
+            ->groupBy('course_id');
+    
+        $mycourse = Order::joinSub($latestOrders, 'latest_order', function($join) {
+            $join->on('orders.id', '=', 'latest_order.max_id');
+        })->orderBy('latest_order.max_id', 'DESC')->get();
+    
+        return view('frontend.mycourse.my_all_course',compact('mycourse'));
+
+    }
+    //End method
+
+    //Method to riderect to course details from dashboard courses
+    public function CourseView($course_id){
+
+        $id = Auth::user()->id;
+
+
+        $course = Order::where('course_id',$course_id)->where('user_id', $id)->first();
+        $section = CourseSection::where('course_id',$course_id)->orderBy('id', 'asc')->get();
+        return view ('frontend.mycourse.course_view',compact('course','section'));
+        
+
+    }
+
 
 }
