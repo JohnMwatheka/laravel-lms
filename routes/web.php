@@ -13,6 +13,8 @@ use App\Http\Controllers\Frontend\WishListController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\OrderController;
+use App\Http\Controllers\Backend\QuestionController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -53,6 +55,15 @@ Route::middleware('auth')->group(function () {
      Route::controller(OrderController::class)->group(function(){
         Route::get('/my/course','MyCourse')->name('my.course');
         Route::get('/course/view/{course_id}','CourseView')->name('course.view');       
+    });
+
+
+
+    // User question all route
+    Route::controller(QuestionController::class)->group(function(){
+        Route::post('/user/question','UserQuestion')->name('user.question');
+        
+               
     });
 
 
@@ -234,6 +245,14 @@ Route::controller(OrderController::class)->group(function(){
     
 
 
+});
+
+//Grouproute for all Instructor Question.
+Route::controller(QuestionController::class)->group(function(){
+    Route::get('/instructor/all/question','InstructorAllQuestion')->name('instructor.all.question');
+    Route::get('/question/details/{id}','QuestionDetails')->name('question.details');
+    Route::post('/instructor/reply','InstructorReply')->name('instructor.reply');
+           
 });
 
 

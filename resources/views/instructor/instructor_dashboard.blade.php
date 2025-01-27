@@ -270,6 +270,15 @@
       } );
 </script>
   <!-- End Data Table-->
+
+  {{-- for chat application layout --}}
+  	<script>
+		new PerfectScrollbar('.chat-list');
+		new PerfectScrollbar('.chat-content');
+	</script>
+
+	{{-- for chat application layout --}}
+	
   <!-- Sweet alert-->
   <script src="{{asset('backend/assets/js/validate.min.js')}}"></script>
     <script src="{{ asset('backend/assets/js/code.js') }}"></script>

@@ -351,15 +351,22 @@
 
 
 
-                                            <form action="#" class="pt-4">
+                                            <form method="post" action="{{ route('user.question') }}" class="pt-4">
+
+                                                @csrf
+                                                
+                                                <input type="hidden" name="course_id" value="{{ $course->course->id }}">
+                                                {{-- <input type="text" name="user_id" value="{{ Auth::user()->id }}" hidden> --}}
+                                                <input type="hidden" name="instructor_id" value="{{ $course->instructor_id }}">
                                                 <div class="custom-control-wrap">
                                                     <div class="pl-0 mb-3 custom-control custom-radio">
-                                                        <input type="text" name ="question" class="pl-3 form-control form--control">
+                                                        <input type="text" name ="subject" class="pl-3 form-control form--control">
                                                         
                                                         
                                                     </div>
+                                                    <h3 class="fs-20 font-weight-semi-bold">Type your question here</h3>
                                                     <div class="pl-0 mb-3 custom-control custom-radio">
-                                                        <textarea class="pl-3 form-control form--control" name="message" rows="4" placeholder="Write your response..." spellcheck="false"></textarea>
+                                                        <textarea class="pl-3 form-control form--control" name="question" rows="4" placeholder="Write your response..." spellcheck="false"></textarea>
                                                         
                                                     </div>
                                                     
@@ -386,7 +393,7 @@
                                         
                                         <div class="lecture-overview-item">
                                             <div class="question-overview-result-header d-flex align-items-center justify-content-between">
-                                                <h3 class="fs-17 font-weight-semi-bold">30 questions in this course</h3>
+                                                <h3 class="fs-17 font-weight-semi-bold">{{ count($allquestion) }} questions in this course</h3>
                                                 <button class="btn theme-btn theme-btn-sm theme-btn-transparent ask-new-question-btn">Ask a new question</button>
                                             </div>
                                         </div><!-- end lecture-overview-item -->
@@ -396,41 +403,69 @@
 
 
 
+                                                @php
+                                                    $id = Auth::user()->id;
+                                                    $question = App\Models\Question::where('user_id', $id)->where('course_id', $course->course->id)->where('parent_id', null)->orderBy('created_at', 'desc')->get();
 
-                                                <div class="px-3 py-4 media media-card border-bottom border-bottom-gray">
-                                                    <div class="flex-shrink-0 rounded-full media-img avatar-sm">
-                                                        <img class="rounded-full" src="images/small-avatar-1.jpg" alt="User image">
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <div class="d-flex align-items-center justify-content-between">
-                                                            <div class="question-meta-content">
-                                                                <a href="javascript:void(0)" class="d-block">
-                                                                    <h5 class="pb-1 fs-16">I still did't get H264 after installing Quicktime. Please what do I do</h5>
-                                                                    <p class="text-truncate fs-15 text-gray">
-                                                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                                                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                                                        Ut enim ad minim veniam, quis nostrud exercitation.
-                                                                    </p>
-                                                                </a>
-                                                            </div><!-- end question-meta-content -->
-                                                            <div class="question-upvote-action">
-                                                                <div class="pb-2 number-upvotes d-flex align-items-center">
-                                                                    <span>1</span>
-                                                                    <button type="button"><i class="la la-arrow-up"></i></button>
-                                                                </div>
-                                                                <div class="number-upvotes question-response d-flex align-items-center">
-                                                                    <span>1</span>
-                                                                    <button type="button" class="question-replay-btn"><i class="la la-comments"></i></button>
-                                                                </div>
-                                                            </div><!-- end question-upvote-action -->
+                                                @endphp
+
+
+                                                @foreach ($question as $que)
+                                                    <div class="px-3 py-4 media media-card border-bottom border-bottom-gray">
+                                                        <div class="flex-shrink-0 rounded-full media-img avatar-sm">
+                                                            <img class="rounded-full" src="{{ (!empty($que->user->photo)) ? url('upload/user_images/'.$que->user->photo) : url('upload/no_image.jpg')}}" alt="User image">
                                                         </div>
-                                                        <p class="pt-1 meta-tags fs-13">
-                                                            <a href="#">Alex Smith</a>
-                                                            <a href="#">Lecture 20</a>
-                                                            <span>3 hours ago</span>
-                                                        </p>
-                                                    </div><!-- end media-body -->
-                                                </div><!-- end media -->
+                                                        <div class="media-body">
+                                                            <div class="d-flex align-items-center justify-content-between">
+                                                                <div class="question-meta-content">
+                                                                    <a href="javascript:void(0)" class="d-block">
+                                                                        <h5 class="pb-1 fs-16">{{ $que->subject }}</h5>
+                                                                        <p class="text-truncate fs-15 text-gray">
+                                                                            {{ $que->question }}
+                                                                        </p>
+                                                                    </a>
+                                                                </div><!-- end question-meta-content -->
+                                                                <!-- end question-upvote-action -->
+                                                            </div>
+                                                            <p class="pt-1 meta-tags fs-13">
+                                                                <span>{{ Carbon\carbon::parse($que->created_at)->diffForHumans() }}</span>
+                                                            </p>
+                                                        </div><!-- end media-body -->
+                                                    </div>
+
+                                                    @php
+                                                        $reply = App\Models\Question::where('parent_id', $que->id)->orderBy('created_at', 'desc')->get();
+                                                    @endphp
+                                                    
+                                                    @foreach($reply as $rep)
+                                                    <h6 class="pb-1 fs-16">...</h6>
+                                                    <div class="px-3 py-4 border-4 rounded shadow media media-card border-start border-success" style="background: #dafaf7;">
+                                                        <div class="flex-shrink-0 rounded-full media-img avatar-sm">
+                                                            <img class="rounded-full" src="{{ (!empty($rep->instructor->photo)) ? url('upload/instructor_images/'.$rep->instructor->photo) : url('upload/no_image.jpg')}}" alt="User image">
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <div class="d-flex align-items-center justify-content-between">
+                                                                <div class="question-meta-content">
+                                                                    <a href="javascript:void(0)" class="d-block">
+                                                                        <h5 class="pb-1 fs-16">{{ $rep->instructor->name }}</h5>
+                                                                        <p class="text-truncate fs-15 text-gray">
+                                                                            {{ $rep->question }}
+                                                                        </p>
+                                                                    </a>
+                                                                </div><!-- end question-meta-content -->
+                                                                <!-- end question-upvote-action -->
+                                                            </div>
+                                                            <p class="pt-1 meta-tags fs-13">
+                                                                <span>{{ Carbon\carbon::parse($rep->created_at)->diffForHumans() }}</span>
+                                                            </p>
+                                                        </div><!-- end media-body -->
+                                                    </div>
+                                                    @endforeach
+                                                    
+                                                @endforeach
+
+
+                                                <!-- end media -->
                                                
 
 

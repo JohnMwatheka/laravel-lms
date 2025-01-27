@@ -22,6 +22,7 @@ use App\Models\Order;
 use Illuminate\Support\Facades\Mail;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
+use App\Models\Question;
 
 
 class OrderController extends Controller
@@ -120,14 +121,15 @@ class OrderController extends Controller
     public function CourseView($course_id){
 
         $id = Auth::user()->id;
-
-
         $course = Order::where('course_id',$course_id)->where('user_id', $id)->first();
         $section = CourseSection::where('course_id',$course_id)->orderBy('id', 'asc')->get();
-        return view ('frontend.mycourse.course_view',compact('course','section'));
+
+        $allquestion = Question::latest()->get();
+        return view ('frontend.mycourse.course_view',compact('course','section', 'allquestion'));
         
 
     }
+    //End Method
 
 
 }
