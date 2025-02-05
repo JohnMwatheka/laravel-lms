@@ -5,7 +5,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-12">
                         <div class="logo-box logo--box">
-                            <a href="{{ url('/') }}" class="logo"><img src="{{ asset('frontend/images/logo.png') }}" alt="logo"></a>
+                            <a href="{{ url('/') }}" class="logo"><img src="{{ asset('frontend/images/logo.png') }}" alt="logo" class="rounded-full" height="100" width="100"></a>
                             <div class="user-btn-action">
                                 <div class="mr-2 shadow-sm search-menu-toggle icon-element icon-element-sm" data-toggle="tooltip" data-placement="top" title="Search">
                                     <i class="la la-search"></i>
@@ -192,7 +192,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('user_profile') }}nj">
+                                <a href="{{ route('user_profile') }}">
                                     <i class="mr-1 la la-edit"></i> Edit profile
                                 </a>
                             </li>

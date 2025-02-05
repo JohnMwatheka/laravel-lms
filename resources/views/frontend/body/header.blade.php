@@ -61,7 +61,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-2">
                         <div class="logo-box">
-                            <a href="{{ url('/') }}" class="logo"><img src="{{ asset('frontend/images/logo.png')}}" alt="logo"></a>
+                            <a href="{{ url('/') }}" class="logo"><img src="{{ asset('frontend/images/logo.png')}}" alt="logo" class="rounded-full" height="100" width="100"></a>
                             <div class="user-btn-action">
                                 <div class="mr-2 shadow-sm search-menu-toggle icon-element icon-element-sm" data-toggle="tooltip" data-placement="top" title="Search">
                                     <i class="la la-search"></i>
@@ -87,21 +87,21 @@
                 <li>
                     <a href="#">Categories <i class="la la-angle-down fs-12"></i></a>
                     <ul class="cat-dropdown-menu">
-
+                       
                         @foreach ($categories as $cat)
         @php
-        $subcategories = App\Models\SubCategory::where('category_id',$cat->id)->get();
-        @endphp
+        $subcategories = App\Models\SubCategory::where('category_id',$cat->id)->get();    
+        @endphp                
                         <li>
                             <a href="{{ url('category/'.$cat->id.'/'.$cat->category_slug) }}">{{ $cat->category_name }}<i class="la la-angle-right"></i></a>
                             <ul class="sub-menu">
                                 @foreach ($subcategories as $subcat)
-                                <li><a href="{{ url('subcategory/'.$subcat->id.'/'.$subcat->subcategory_slug) }}">{{ $subcat->subcategory_name }}</a></li>
+                                <li><a href="{{ url('subcategory/'.$subcat->id.'/'.$subcat->subcategory_slug) }}">{{ $subcat->subcategory_name }}</a></li> 
                                 @endforeach
                             </ul>
-                        </li>
+                        </li> 
                         @endforeach
-
+                        
                     </ul>
                 </li>
             </ul>
@@ -116,20 +116,20 @@
             <ul>
                 <li>
                     <a href="{{ url('/') }}">Home  </a>
-
+                    
                 </li>
                 <li>
                     <a href="#">courses <i class="la la-angle-down fs-12"></i></a>
                     <ul class="dropdown-menu-item">
                         <li><a href="course-grid.html">course grid</a></li>
                         <li><a href="course-list.html">course list</a></li>
-
+                        
                     </ul>
                 </li>
-
+                
                 <li>
                     <a href="#">blog  </a>
-
+                    
                 </li>
             </ul><!-- end ul -->
         </nav><!-- end main-menu -->
@@ -144,15 +144,15 @@
                     </p>
 
                     <ul class="cart-dropdown-menu">
-
+                        
                         <div id="miniCart">
 
                         </div>
-
-                        <br>
+                       <br><br>
+                       
                         <li class="media media-card">
                             <div class="media-body fs-16">
-                                <p class="text-black font-weight-semi-bold lh-18">Total: Ksh <span class="cart-total" id="cartSubTotal"></span> </p>
+                                <p class="text-black font-weight-semi-bold lh-18">Total: $<span class="cart-total" id="cartSubTotal"> </span>  </p>
                             </div>
                         </li>
                         <li>
@@ -179,64 +179,75 @@
             <li>
                 <a href="#">Home</a>
                 <ul class="sub-menu">
-                    <li><a href="index.html">Home One</a></li>
-                    <li><a href="home-2.html">Home Two</a></li>
-                    <li><a href="home-3.html">Home Three</a></li>
-                    <li><a href="home-4.html">Home four</a></li>
+                    <li><a href="index.html"><a href="{{ url('/') }}">Home  </a></a></li>
                 </ul>
             </li>
             <li>
-                <a href="#">courses</a>
+                <a href="#">Categories</a>
                 <ul class="sub-menu">
-                    <li><a href="course-grid.html">course grid</a></li>
-                    <li><a href="course-list.html">course list</a></li>
-                    <li><a href="course-grid-left-sidebar.html">grid left sidebar</a></li>
-                    <li><a href="course-grid-right-sidebar.html">grid right sidebar</a></li>
-                    <li><a href="course-list-left-sidebar.html">list left sidebar <span class="ribbon ribbon-blue-bg">New</span></a></li>
-                    <li><a href="course-list-right-sidebar.html">list right sidebar <span class="ribbon ribbon-blue-bg">New</span></a></li>
-                    <li><a href="course-details.html">course details</a></li>
-                    <li><a href="lesson-details.html">lesson details</a></li>
-                    <li><a href="my-courses.html">My courses</a></li>
+                    
+                    @foreach ($categories as $cat)
+                    @php
+                    $subcategories = App\Models\SubCategory::where('category_id',$cat->id)->get();
+                    @endphp
+                                    <li>
+                                        <a href="{{ url('category/'.$cat->id.'/'.$cat->category_slug) }}">{{ $cat->category_name }}<i class="la la-angle-right"></i></a>
+                                        <ul class="sub-menu">
+                                            @foreach ($subcategories as $subcat)
+                                            <li><a href="{{ url('subcategory/'.$subcat->id.'/'.$subcat->subcategory_slug) }}">{{ $subcat->subcategory_name }}</a></li>
+                                            @endforeach
+                                        </ul>
+                                    </li>
+                                    @endforeach
                 </ul>
             </li>
             <li>
                 <a href="#">Student</a>
                 <ul class="sub-menu">
-                    <li><a href="student-detail.html">student detail</a></li>
-                    <li><a href="student-quiz.html">take quiz</a></li>
-                    <li><a href="student-quiz-results.html">quiz results</a></li>
-                    <li><a href="student-quiz-result-details.html">quiz details</a></li>
-                    <li><a href="student-quiz-result-details-2.html">quiz details 2</a></li>
-                    <li><a href="student-path.html">path details</a></li>
-                    <li><a href="student-path-assessment.html">Skill Assessment</a></li>
-                    <li><a href="student-path-assessment-result.html">Skill result</a></li>
+                    @auth
+                    <li class="pr-3 mr-3 d-flex align-items-center border-right border-right-gray">
+                        <i class="mr-1 la la-sign-in"></i><a href="{{ route('dashboard') }}"> Dashboard</a>
+                    </li>
+                    <li class="d-flex align-items-center">
+                        <i class="mr-1 la la-user"></i><a href="{{ route('user.logout') }}"> Logout</a>
+                    </li>
+                    @else
+                    <li class="pr-3 mr-3 d-flex align-items-center border-right border-right-gray">
+                        <i class="mr-1 la la-sign-in"></i><a href="{{ route('login') }}"> Login</a>
+                    </li>
+                    <li class="d-flex align-items-center">
+                        <i class="mr-1 la la-user"></i><a href="{{ route('register') }}"> Register</a>
+                    </li>
+                    @endauth
                 </ul>
             </li>
             <li>
                 <a href="#">pages</a>
                 <ul class="sub-menu">
-                    <li><a href="dashboard.html">dashboard <span class="ribbon">Hot</span></a></li>
-                    <li><a href="about.html">about</a></li>
-                    <li><a href="teachers.html">Teachers</a></li>
-                    <li><a href="teacher-detail.html">Teacher detail</a></li>
-                    <li><a href="careers.html">careers</a></li>
-                    <li><a href="career-details.html">career details</a></li>
-                    <li><a href="categories.html">categories</a></li>
-                    <li><a href="terms-and-conditions.html">Terms & conditions</a></li>
-                    <li><a href="privacy-policy.html">privacy policy</a></li>
-                    <li><a href="for-business.html">for business</a></li>
-                    <li><a href="become-a-teacher.html">become an instructor</a></li>
-                    <li><a href="faq.html">FAQs</a></li>
-                    <li><a href="admission.html">admission</a></li>
-                    <li><a href="gallery.html">gallery</a></li>
-                    <li><a href="pricing-table.html">pricing tables</a></li>
-                    <li><a href="contact.html">contact</a></li>
-                    <li><a href="sign-up.html">sign-up</a></li>
-                    <li><a href="login.html">login</a></li>
-                    <li><a href="recover.html">recover</a></li>
-                    <li><a href="shopping-cart.html">cart</a></li>
-                    <li><a href="checkout.html">checkout</a></li>
-                    <li><a href="error.html">page 404</a></li>
+                    
+                        <li>
+                            <p class="shop-cart-btn d-flex align-items-center">
+                                <i class="la la-shopping-cart"></i>
+                                <span class="product-count" id="cartQty">0</span>
+                            </p>
+        
+                            <ul class="cart-dropdown-menu">
+        
+                                <div id="miniCart">
+        
+                                </div>
+        
+                                <br>
+                                <li class="media media-card">
+                                    <div class="media-body fs-16">
+                                        <p class="text-black font-weight-semi-bold lh-18">Total: Ksh <span class="cart-total" id="cartSubTotal"></span> </p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="{{ route('myCart') }}" class="btn theme-btn w-100">Go to cart <i class="ml-1 la la-arrow-right icon"></i></a>
+                                </li>
+                            </ul>
+                        </li>
                 </ul>
             </li>
             <li>
@@ -259,15 +270,19 @@
             <li>
                 <a href="course-grid.html">Development</a>
                 <ul class="sub-menu">
-                    <li><a href="#">All Development</a></li>
-                    <li><a href="#">Web Development</a></li>
-                    <li><a href="#">Mobile Apps</a></li>
-                    <li><a href="#">Game Development</a></li>
-                    <li><a href="#">Databases</a></li>
-                    <li><a href="#">Programming Languages</a></li>
-                    <li><a href="#">Software Testing</a></li>
-                    <li><a href="#">Software Engineering</a></li>
-                    <li><a href="#">E-Commerce</a></li>
+                    @foreach ($categories as $cat)
+                    @php
+                    $subcategories = App\Models\SubCategory::where('category_id',$cat->id)->get();
+                    @endphp
+                                <li>
+                                    <a href="{{ url('category/'.$cat->id.'/'.$cat->category_slug) }}">{{ $cat->category_name }}<i class="la la-angle-right"></i></a>
+                                    <ul class="sub-menu">
+                                        @foreach ($subcategories as $subcat)
+                                        <li><a href="{{ url('subcategory/'.$subcat->id.'/'.$subcat->subcategory_slug) }}">{{ $subcat->subcategory_name }}</a></li>
+                                        @endforeach
+                                    </ul>
+                                </li>
+                                @endforeach
                 </ul>
             </li>
             <li>

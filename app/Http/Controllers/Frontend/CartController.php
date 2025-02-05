@@ -247,6 +247,20 @@ class CartController extends Controller
             $total_amount = round(Cart::total());
         }
 
+            $data = array(); 
+            $data['name'] = $request->name;
+            $data['email'] = $request->email;
+            $data['phone'] = $request->phone;
+            $data['address'] = $request->address;
+            $data['course_title'] = $request->course_title;
+            $cartTotal = Cart::total();
+            $carts = Cart::content();
+        
+
+        if ($request->cash_delivery == 'stripe') {
+            return view('frontend.payment.stripe',compact('data','cartTotal','carts'));
+        }elseif($request->cash_delivery == 'handcash'){ 
+
         // Cerate a new Payment Record 
 
         $data = new Payment();
@@ -258,20 +272,21 @@ class CartController extends Controller
         $data->total_amount = $total_amount;
         $data->payment_type = 'Direct Payment';
         
-  
         $data->invoice_no = 'EOS' . mt_rand(10000000, 99999999);
         $data->order_date = Carbon::now()->format('d F Y');
         $data->order_month = Carbon::now()->format('F');
-        $data->order_year= Carbon::now()->format('Y');
-        $data->status ='pending';
-        $data->created_at = Carbon::now();
-        
+        $data->order_year = Carbon::now()->format('Y');
+        $data->status = 'pending';
+        $data->created_at = Carbon::now(); 
         $data->save();
 
-        foreach ($request->course_title as $key => $course_title) {
+
+       foreach ($request->course_title as $key => $course_title) {
+        
             $existingOrder = Order::where('user_id',Auth::user()->id)->where('course_id',$request->course_id[$key])->first();
 
-            if ( $existingOrder ) {
+            if ($existingOrder) {
+
                 $notification = array(
                     'message' => 'You Have already enrolled in this course',
                     'alert-type' => 'error'
@@ -292,33 +307,32 @@ class CartController extends Controller
 
            $request->session()->forget('cart');
 
-           $paymentId =$data->id;
+           $paymentId = $data->id;
 
-           // Start Send mail to student
+           /// Start Send email to student ///
            $sendmail = Payment::find($paymentId);
            $data = [
-            'invoice_no' => $sendmail->invoice_no,
-            'amount' => $total_amount,
-            'name' => $sendmail->name,
-            'email' => $sendmail->email,
+                'invoice_no' => $sendmail->invoice_no,
+                'amount' => $total_amount,
+                'name' => $sendmail->name,
+                'email' => $sendmail->email,
            ];
 
            Mail::to($request->email)->send(new Orderconfirm($data));
-           // Start Send mail to student
 
-                if ($request->cash_delivery=='stripe') {
-                    echo "stripe";
-                }else {
-                    $notification = array(
-                        'message' => 'Cash payment submitted successfully',
-                        'alert-type' => 'success'
-                    );
-                    return redirect()->route('index')->with($notification);
-                }
 
+           /// End Send email to student /// 
+
+           $notification = array(
+            'message' => 'Cash Payment Submit Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('index')->with($notification); 
+
+        } // End Elseif 
+           
        
-        
-    }
+    }// End Method 
     //End method
 
     public function buyToCart(Request $request, $id){

@@ -4,7 +4,7 @@
             <div class="col-lg-3 responsive-column-half">
                 <div class="footer-item">
                     <a href="index.html">
-                        <img src="images/logo.png" alt="footer logo" class="footer__logo">
+                        <img src="{{ asset('frontend/images/logo.png') }}" alt="footer logo" class="rounded-full footer__logo width-100" height="100">
                     </a>
                     <ul class="pt-4 generic-list-item">
                         <li><a href="tel:+1631237884">+163 123 7884</a></li>
@@ -54,51 +54,38 @@
                     <span class="section-divider section--divider"></span>
                     <div class="mobile-app">
                         <p class="pb-3 lh-24">Download our mobile app and learn on the go.</p>
-                        <a href="#" class="mb-2 d-block hover-s"><img src="images/appstore.png" alt="App store" class="img-fluid"></a>
-                        <a href="#" class="d-block hover-s"><img src="images/googleplay.png" alt="Google play store" class="img-fluid"></a>
+                        <a href="#" class="mb-2 d-block hover-s"><img src="{{ asset('frontend/images/appstore.png') }}" alt="App store" class="img-fluid"></a>
+                        <a href="#" class="d-block hover-s"><img src="{{ asset('frontend/images/googleplay.png') }}" alt="Google play store" class="img-fluid"></a>
                     </div>
                 </div><!-- end footer-item -->
             </div><!-- end col-lg-3 -->
         </div><!-- end row -->
     </div><!-- end container -->
     <div class="section-block"></div>
-    <div class="py-4 copyright-content">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <p class="copy-desc">&copy; 2021 Aduca. All Rights Reserved. by <a href="https://techydevs.com/">TechyDevs</a></p>
-                </div><!-- end col-lg-6 -->
-                <div class="col-lg-6">
-                    <div class="flex-wrap d-flex align-items-center justify-content-end">
-                        <ul class="flex-wrap generic-list-item d-flex align-items-center fs-14">
-                            <li class="mr-3"><a href="terms-and-conditions.html">Terms & Conditions</a></li>
-                            <li class="mr-3"><a href="privacy-policy.html">Privacy Policy</a></li>
-                        </ul>
-                        <div class="select-container select-container-sm">
-                            <select class="select-container-select">
-                                <option value="1">English</option>
-                                <option value="2">Deutsch</option>
-                                <option value="3">Español</option>
-                                <option value="4">Français</option>
-                                <option value="5">Bahasa Indonesia</option>
-                                <option value="6">Bangla</option>
-                                <option value="7">日本語</option>
-                                <option value="8">한국어</option>
-                                <option value="9">Nederlands</option>
-                                <option value="10">Polski</option>
-                                <option value="11">Português</option>
-                                <option value="12">Română</option>
-                                <option value="13">Русский</option>
-                                <option value="14">ภาษาไทย</option>
-                                <option value="15">Türkçe</option>
-                                <option value="16">中文(简体)</option>
-                                <option value="17">中文(繁體)</option>
-                                <option value="17">Hindi</option>
-                            </select>
-                        </div>
-                    </div>
-                </div><!-- end col-lg-6 -->
-            </div><!-- end row -->
-        </div><!-- end container -->
-    </div><!-- end copyright-content -->
+    <div class="pb-4 row align-items-center dashboard-copyright-content">
+        <div class="col-lg-6">
+            <p class="copy-desc" > &copy; <span id="copyright-year"></span> JK online academy. All Rights Reserved.</p>
+        </div><!-- end col-lg-6 -->
+        <div class="col-lg-6">
+            <ul class="flex-wrap generic-list-item d-flex align-items-center fs-14 justify-content-end">
+                <li class="mr-3"><a href="terms-and-conditions.html">Terms & Conditions</a></li>
+                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            </ul>
+        </div><!-- end col-lg-6 -->
+    </div>
+    <!-- end row -->
+    <!-- end copyright-content -->
+    
 </section>
+<script>
+    // Select the element where the copyright year should be updated
+    const copyrightYearElement = document.getElementById('copyright-year');
+
+    // Get the current year
+    const currentYear = new Date().getFullYear();
+
+    // Update the content of the element
+    if (copyrightYearElement) {
+    copyrightYearElement.textContent = currentYear;
+    }
+</script>

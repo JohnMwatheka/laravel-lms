@@ -1,7 +1,7 @@
 <section class="testimonial-area section-padding">
     <div class="container">
-        <div class="section-heading text-center">
-            <h5 class="ribbon ribbon-lg mb-2">Testimonials</h5>
+        <div class="text-center section-heading">
+            <h5 class="mb-2 ribbon ribbon-lg">Testimonials</h5>
             <h2 class="section__title">Student's Feedback</h2>
             <span class="section-divider"></span>
         </div><!-- end section-heading -->
@@ -10,14 +10,14 @@
         <div class="testimonial-carousel owl-action-styled">
             <div class="card card-item">
                 <div class="card-body">
-                    <div class="media media-card align-items-center pb-3">
+                    <div class="pb-3 media media-card align-items-center">
                         <div class="media-img avatar-md">
-                            <img src="images/small-avatar-1.jpg" alt="Testimonial avatar" class="rounded-full">
+                            <img src="{{ asset('frontend/images/small-avatar-1.jpg') }}" alt="Testimonial avatar" class="rounded-full">
                         </div>
                         <div class="media-body">
                             <h5>Kevin Martin</h5>
-                            <div class="d-flex align-items-center pt-1">
-                                <span class="lh-18 pr-2">Student</span>
+                            <div class="pt-1 d-flex align-items-center">
+                                <span class="pr-2 lh-18">Student</span>
                                 <div class="review-stars">
                                     <span class="la la-star"></span>
                                     <span class="la la-star"></span>
@@ -37,14 +37,14 @@
             </div><!-- end card -->
             <div class="card card-item">
                 <div class="card-body">
-                    <div class="media media-card align-items-center pb-3">
+                    <div class="pb-3 media media-card align-items-center">
                         <div class="media-img avatar-md">
-                            <img src="images/small-avatar-2.jpg" alt="Testimonial avatar" class="rounded-full">
+                            <img src="{{ asset('frontend/images/small-avatar-2.jpg') }}" alt="Testimonial avatar" class="rounded-full">
                         </div>
                         <div class="media-body">
                             <h5>Oliver Beddows</h5>
-                            <div class="d-flex align-items-center pt-1">
-                                <span class="lh-18 pr-2">Student</span>
+                            <div class="pt-1 d-flex align-items-center">
+                                <span class="pr-2 lh-18">Student</span>
                                 <div class="review-stars">
                                     <span class="la la-star"></span>
                                     <span class="la la-star"></span>
@@ -66,14 +66,14 @@
             </div><!-- end card -->
             <div class="card card-item">
                 <div class="card-body">
-                    <div class="media media-card align-items-center pb-3">
+                    <div class="pb-3 media media-card align-items-center">
                         <div class="media-img avatar-md">
-                            <img src="images/small-avatar-3.jpg" alt="Testimonial avatar" class="rounded-full">
+                            <img src="{{ asset('frontend/images/small-avatar-3.jpg') }}" alt="Testimonial avatar" class="rounded-full">
                         </div>
                         <div class="media-body">
                             <h5>Jackob Hallac</h5>
-                            <div class="d-flex align-items-center pt-1">
-                                <span class="lh-18 pr-2">Student</span>
+                            <div class="pt-1 d-flex align-items-center">
+                                <span class="pr-2 lh-18">Student</span>
                                 <div class="review-stars">
                                     <span class="la la-star"></span>
                                     <span class="la la-star"></span>
@@ -93,14 +93,14 @@
             </div><!-- end card -->
             <div class="card card-item">
                 <div class="card-body">
-                    <div class="media media-card align-items-center pb-3">
+                    <div class="pb-3 media media-card align-items-center">
                         <div class="media-img avatar-md">
-                            <img src="images/small-avatar-4.jpg" alt="Testimonial avatar" class="rounded-full">
+                            <img src="{{ asset('frontend/images/small-avatar-4.jpg') }}" alt="Testimonial avatar" class="rounded-full">
                         </div>
                         <div class="media-body">
                             <h5>Lubic Duble</h5>
-                            <div class="d-flex align-items-center pt-1">
-                                <span class="lh-18 pr-2">Student</span>
+                            <div class="pt-1 d-flex align-items-center">
+                                <span class="pr-2 lh-18">Student</span>
                                 <div class="review-stars">
                                     <span class="la la-star"></span>
                                     <span class="la la-star"></span>
@@ -119,14 +119,14 @@
             </div><!-- end card -->
             <div class="card card-item">
                 <div class="card-body">
-                    <div class="media media-card align-items-center pb-3">
+                    <div class="pb-3 media media-card align-items-center">
                         <div class="media-img avatar-md">
-                            <img src="images/small-avatar-5.jpg" alt="Testimonial avatar" class="rounded-full">
+                            <img src="{{ asset('frontend/images/small-avatar-5.jpg') }}" alt="Testimonial avatar" class="rounded-full">
                         </div>
                         <div class="media-body">
                             <h5>Daniel Ward</h5>
-                            <div class="d-flex align-items-center pt-1">
-                                <span class="lh-18 pr-2">Student</span>
+                            <div class="pt-1 d-flex align-items-center">
+                                <span class="pr-2 lh-18">Student</span>
                                 <div class="review-stars">
                                     <span class="la la-star"></span>
                                     <span class="la la-star"></span>
@@ -147,14 +147,14 @@
             </div><!-- end card -->
             <div class="card card-item">
                 <div class="card-body">
-                    <div class="media media-card align-items-center pb-3">
+                    <div class="pb-3 media media-card align-items-center">
                         <div class="media-img avatar-md">
-                            <img src="images/small-avatar-1.jpg" alt="Testimonial avatar" class="rounded-full">
+                            <img src="{{ asset('frontend/images/small-avatar-1.jpg') }}" alt="Testimonial avatar" class="rounded-full">
                         </div>
                         <div class="media-body">
                             <h5>Kevin Martin</h5>
-                            <div class="d-flex align-items-center pt-1">
-                                <span class="lh-18 pr-2">Student</span>
+                            <div class="pt-1 d-flex align-items-center">
+                                <span class="pr-2 lh-18">Student</span>
                                 <div class="review-stars">
                                     <span class="la la-star"></span>
                                     <span class="la la-star"></span>
@@ -174,14 +174,14 @@
             </div><!-- end card -->
             <div class="card card-item">
                 <div class="card-body">
-                    <div class="media media-card align-items-center pb-3">
+                    <div class="pb-3 media media-card align-items-center">
                         <div class="media-img avatar-md">
-                            <img src="images/small-avatar-2.jpg" alt="Testimonial avatar" class="rounded-full">
+                            <img src="{{ asset('frontend/images/small-avatar-2.jpg') }}" alt="Testimonial avatar" class="rounded-full">
                         </div>
                         <div class="media-body">
                             <h5>Oliver Beddows</h5>
-                            <div class="d-flex align-items-center pt-1">
-                                <span class="lh-18 pr-2">Student</span>
+                            <div class="pt-1 d-flex align-items-center">
+                                <span class="pr-2 lh-18">Student</span>
                                 <div class="review-stars">
                                     <span class="la la-star"></span>
                                     <span class="la la-star"></span>
@@ -203,14 +203,14 @@
             </div><!-- end card -->
             <div class="card card-item">
                 <div class="card-body">
-                    <div class="media media-card align-items-center pb-3">
+                    <div class="pb-3 media media-card align-items-center">
                         <div class="media-img avatar-md">
-                            <img src="images/small-avatar-3.jpg" alt="Testimonial avatar" class="rounded-full">
+                            <img src="{{ asset('frontend/images/small-avatar-3.jpg') }}" alt="Testimonial avatar" class="rounded-full">
                         </div>
                         <div class="media-body">
                             <h5>Jackob Hallac</h5>
-                            <div class="d-flex align-items-center pt-1">
-                                <span class="lh-18 pr-2">Student</span>
+                            <div class="pt-1 d-flex align-items-center">
+                                <span class="pr-2 lh-18">Student</span>
                                 <div class="review-stars">
                                     <span class="la la-star"></span>
                                     <span class="la la-star"></span>
@@ -230,14 +230,14 @@
             </div><!-- end card -->
             <div class="card card-item">
                 <div class="card-body">
-                    <div class="media media-card align-items-center pb-3">
+                    <div class="pb-3 media media-card align-items-center">
                         <div class="media-img avatar-md">
-                            <img src="images/small-avatar-4.jpg" alt="Testimonial avatar" class="rounded-full">
+                            <img src="{{ asset('frontend/images/small-avatar-4.jpg') }}" alt="Testimonial avatar" class="rounded-full">
                         </div>
                         <div class="media-body">
                             <h5>Lubic Duble</h5>
-                            <div class="d-flex align-items-center pt-1">
-                                <span class="lh-18 pr-2">Student</span>
+                            <div class="pt-1 d-flex align-items-center">
+                                <span class="pr-2 lh-18">Student</span>
                                 <div class="review-stars">
                                     <span class="la la-star"></span>
                                     <span class="la la-star"></span>
@@ -256,14 +256,14 @@
             </div><!-- end card -->
             <div class="card card-item">
                 <div class="card-body">
-                    <div class="media media-card align-items-center pb-3">
+                    <div class="pb-3 media media-card align-items-center">
                         <div class="media-img avatar-md">
-                            <img src="images/small-avatar-5.jpg" alt="Testimonial avatar" class="rounded-full">
+                            <img src="{{ asset('frontend/images/small-avatar-5.jpg') }}" alt="Testimonial avatar" class="rounded-full">
                         </div>
                         <div class="media-body">
                             <h5>Daniel Ward</h5>
-                            <div class="d-flex align-items-center pt-1">
-                                <span class="lh-18 pr-2">Student</span>
+                            <div class="pt-1 d-flex align-items-center">
+                                <span class="pr-2 lh-18">Student</span>
                                 <div class="review-stars">
                                     <span class="la la-star"></span>
                                     <span class="la la-star"></span>
